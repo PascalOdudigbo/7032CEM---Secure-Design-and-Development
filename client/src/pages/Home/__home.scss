@@ -1,0 +1,66 @@
+.app__home-wrapper{
+    // min-height: 100vh;
+    overflow: hidden;
+
+    .app__home-image-and-text-wrapper{
+        width: 100%;
+        height: 89vh;
+        background-image: url("../../assets/smiley_doctor.jpg");
+        background-size: cover;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        
+        // background-color: red;
+
+        .app__home-flexible-spacing{
+            width: 55%;
+        }
+
+        .app__home-image-text-and-btn-wrapper{
+            width: 40%;
+
+            .app__home-image-text-title{
+                margin-bottom: 10px;
+                font-size: 30px;
+            }
+
+            .app__home-image-text-body{
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .app_home_register_form-wrapper{
+        background-color: var(--color-white);
+        // height: 100%;
+        width: 400px;
+        margin-left: 20px;
+        top: 45vh;
+        // margin-top: -42%;
+        display: flex;
+        flex-direction: column;
+        justify-self: center;
+        position: absolute;
+        align-items: center;
+        box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+        z-index: 5;
+        border-radius: 5px;
+
+        .app__home-form{
+            width: 80%;
+
+            .app__home_form-headtext{
+                font-size: 40px;
+            }
+
+            .app__home_form-button{
+                margin-bottom: 10px;
+            }
+        }
+
+
+
+    }
+}

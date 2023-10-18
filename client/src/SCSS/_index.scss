@@ -1,14 +1,7 @@
 @import "./app";
 @import "../components/Navbar/navbar";
-@import "../pages/FAQs/faqs";
-@import "../components/Search/search";
-@import "../components/FAQ/faq";
-@import "../components/Dropdown/dropdown";
 @import "../components/FormInput/formInput.scss";
-@import "../pages/Login/Login.scss";
-@import "../components/Alert/alert";
-@import "../pages/AdminPortal/adminPortal";
-@import "../pages/CustomerPortal/customerPortal";
+@import "../pages/Home/_home";
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
@@ -18,7 +11,7 @@
 
   // font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   //   monospace;
-  
+
   --color-orange: #E03F3E;
   --color-turquoise: #058789;
   --color-black: #0C0C0C;
@@ -29,6 +22,7 @@
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  // overflow: hidden;
 }
 
 * {

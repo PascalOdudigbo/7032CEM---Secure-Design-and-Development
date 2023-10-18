@@ -1,0 +1,123 @@
+.app__navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .app__navbar_logo-and-details-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--color-turquoise);
+        padding: 0.5rem 1rem;
+
+        .app__navbar-logo {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .app__navbar-logo-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .app__navbar-logo-txt {
+                width: 80px;
+                height: 30px;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+        }
+
+        .app_navbar_contact_wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            cursor: pointer;
+
+            .app_navbar_contact-icon {
+                margin-right: 3px;
+                color: var(--color-orange);
+            }
+
+            .app_navbar_contact_text {
+                font-size: 0.7em;
+                font-weight: 800;
+                color: var(--color-white);
+                text-transform: none;
+            }
+
+        }
+
+    }
+
+    .app__navbar_links-wrapper {
+        background-color: var(--color-gray);
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .app__navbar-links {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+
+        }
+
+        .app__navbar-links li {
+            margin: 0 2rem;
+            font-size: 0.9em;
+            font-weight: 800;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--color-orange);
+            }
+        }
+
+        .app__navbar-menu {
+
+            .app__navbar-menu-icon {
+                margin-right: 8px;
+                color: var(--color-orange); // size: 30px;
+            }
+
+        }
+
+        .app__navbar-login {
+            justify-content: space-between;
+            // background-color: red;
+            margin-right: 15px;
+
+            .app__navbar-login-icon {
+                margin-right: 5px;
+                color: var(--color-orange);
+                size: 30px;
+            }
+
+            &:hover {
+                border-bottom: 2px solid var(--color-orange);
+            }
+        }
+
+        .app__navbar-login a {
+            font-size: 0.9em;
+            font-weight: 800;
+            &:hover {
+                color: var(--color-orange);
+            }
+
+        }
+    }
+
+
+
+}
