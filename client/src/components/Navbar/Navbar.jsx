@@ -66,14 +66,15 @@ function Navbar({ userData, menuDisplay, setMenuDusplay }) {
                                 <IconContext.Provider value={{ size: "30px", className: "app__navbar-login-icon" }}>
                                     <BiSolidDashboard />
                                 </IconContext.Provider>
-                                <a href={userData?.role === "Admin" ? '/doctor-portal' : '/patient-portal'} className='p__opensans'>Dashboard</a>
+                                <a href={userData?.verification_status ? '/patient-portal' : '/doctor-portal'} className='p__opensans'>Dashboard</a>
                             </div>
                             :
+                        window.location.href.includes("sign-in") === false &&
                             <div className='flex__row_center app__navbar-login'>
                                 <IconContext.Provider value={{ size: "20px", className: "app__navbar-login-icon" }}>
                                     <AiFillLock />
                                 </IconContext.Provider>
-                                <a href='/sign-in' className='p__opensans'>Sign In</a>
+                                <a href='/patient-sign-in' className='p__opensans'>Sign In</a>
                             </div>
                 }
             </div>

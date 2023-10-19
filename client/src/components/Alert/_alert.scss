@@ -1,0 +1,38 @@
+.app__alert-wrapper{
+    margin-top: 110px;
+    position: absolute;
+    display: inline-block;
+    // min-height: 45px;
+    height: fit-content;
+    border-radius: 15px;
+    color: white;
+    z-index: 5 !important; 
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+
+  
+    
+
+    .app__alert-icon-and-message-wrapper{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        .app__alert-icon{
+            margin-left: 5px;
+            margin-right: 10px;
+        }
+
+        .app__alert-message{
+            margin-left: 10px;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+    }
+    
+
+}
+
+
+

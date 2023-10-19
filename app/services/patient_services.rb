@@ -4,9 +4,10 @@ class PatientServices
     def patient_login(params, session)
         patient = Patient.find_by(email: params[:email])
         if patient&.authenticate(params[:password])
-                session[:patient_id] = patient.id
-                patient
-            end
+            session[:patient_id] = patient.id
+            session[:patient_auth_status] = false
+            patient
+        
         else
             {error: "Invalid email or password"}
         end
@@ -15,6 +16,7 @@ class PatientServices
     #function to log patient out
     def log_patient_out(session)
         session.delete :patient_id
+        session[:patient_auth_status] = false
     end
 
     #function to check if patient is logged in
@@ -23,4 +25,14 @@ class PatientServices
         patient
     end
 
+    #function to check if patient has been multifactor authenticated
+    def check_multiauth_status(session)
+        {authenticated: session[:patient_auth_status]}
+    end
+
+    #function to change patient multifactor authentication status
+    def change_multiauth_status(session, params)
+        session[:patient_auth_status] = params[:auth_status]
+        {authenticated: session[:patient_auth_status]}  
+    end
 end

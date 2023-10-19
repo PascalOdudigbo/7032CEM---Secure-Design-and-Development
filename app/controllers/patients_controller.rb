@@ -61,6 +61,17 @@ class PatientsController < ApplicationController
     render json:  @@patient_services.check_patient_logged_in(session)
   end
 
+  # GET /patient-multi-authed
+  def is_patient_multi_authed
+    render json:  @@patient_services.check_multiauth_status(session)
+  end
+
+  # PATCH /change-patient-multi-auth
+  def change_patient_multi_auth
+    render json: @@patient_services.change_multiauth_status(session, params)
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_patient
@@ -69,6 +80,6 @@ class PatientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def patient_params
-      params.permit(:first_name, :last_name, :email, :password, :password_confirmation, :verification_status)
+      params.permit(:first_name, :last_name, :email, :password, :password_confirmation, :verification_status, :auth_status)
     end
 end
