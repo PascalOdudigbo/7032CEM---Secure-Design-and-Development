@@ -34,6 +34,18 @@
                 .app__signup_form-headtext{
                     font-size: 40px;
                 }
+
+                .app__signup_form-signIn-text-link{
+                    color: var(--color-orange);
+                    font-size: 0.8em;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+
+                    &:hover{
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
     
                 .app__signup_form-button{
                     margin-bottom: 20px;

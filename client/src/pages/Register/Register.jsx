@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Navbar, FormInput } from "../../components";
+import { useNavigate } from 'react-router-dom';
 
 
 function Register({ userData, menuDisplay, setMenuDisplay }) {
@@ -8,6 +9,8 @@ function Register({ userData, menuDisplay, setMenuDisplay }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
+
+    const navigate = useNavigate("")
 
     return (
         <div className='app__signup-wrapper'>
@@ -70,6 +73,8 @@ function Register({ userData, menuDisplay, setMenuDisplay }) {
                             required={true}
                             onChangeFunction={(e) => { setPasswordConfirmation(e.target.value) }}
                         />
+
+                        <p className='p__opensans app__signup_form-signIn-text-link' onClick={() => navigate("/sign-in")}>Already have an account?</p>
 
                         <button className='custom__button app__signup_form-button'>Submit</button>
 

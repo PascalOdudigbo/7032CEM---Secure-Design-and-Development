@@ -1,0 +1,71 @@
+.app__signin-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    .app_signin_register_form_and_space-wrapper{
+        display: flex;
+        flex-direction: row;
+        background-image: url("../../assets/male_doctor.jpg");
+        background-size: cover;
+        height: 90vh;
+        align-items: center;
+
+        .app_signin_register_space{
+            width: 60%;
+        }
+
+        .app_signin_register_form-wrapper{
+            background-color: var(--color-white);
+            width: 35%;
+            margin-right: 5%;
+            display: flex;
+            flex-direction: column;
+            justify-self: center;
+            align-items: center;
+            box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+            z-index: 5;
+            border-radius: 5px;
+    
+            .app__signin-form{
+                width: 80%;
+    
+                .app__signin_form-headtext{
+                    font-size: 40px;
+                }
+
+                .app__signin_form-signIn-text-link{
+                    color: var(--color-orange);
+                    font-size: 0.8em;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+
+                    &:hover{
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+    
+                .app__signin_form-button{
+                    margin-bottom: 20px;
+                }
+
+                .app__signin_form-signIn-text-link{
+                    color: var(--color-orange);
+                    font-size: 0.8em;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+
+                    &:hover{
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+            }
+    
+    
+    
+        }
+    }
+}
