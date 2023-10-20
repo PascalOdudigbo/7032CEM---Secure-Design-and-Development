@@ -3,7 +3,7 @@ import { Navbar} from "../../components";
 import { useNavigate } from 'react-router-dom';
 
 
-function Home({ userData, menuDisplay, setMenuDisplay }) {
+function Home({ userData, menuDisplay, setMenuDisplay, isAuthenticated}) {
   const navigate = useNavigate();
   return (
     <div className='app__home-wrapper'>
@@ -11,6 +11,7 @@ function Home({ userData, menuDisplay, setMenuDisplay }) {
         userData={userData}
         menuDisplay={menuDisplay}
         setMenuDusplay={setMenuDisplay}
+        isAuthenticated={isAuthenticated}
       />
 
       <div className='app__home-image-and-text-wrapper'>

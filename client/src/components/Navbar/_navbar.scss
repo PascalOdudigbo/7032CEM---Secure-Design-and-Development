@@ -80,8 +80,6 @@
 
             &:hover {
                 color: var(--color-orange);
-                border-bottom: 2px solid var(--color-orange);
-
             }
         }
 
@@ -106,7 +104,7 @@
             }
 
             &:hover {
-                border-bottom: 2px solid var(--color-orange);
+                border-bottom: 1px solid var(--color-orange);
             }
         }
 

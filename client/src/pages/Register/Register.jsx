@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { Navbar, FormInput } from "../../components";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import emailjs from "@emailjs/browser";
 
 
-function Register({userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, patientData, setPatientData }) {
+function Register({ userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, patientData, setPatientData, sendEmail }) {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -14,37 +13,9 @@ function Register({userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDis
 
     const navigate = useNavigate("")
 
-    //emailJs variables
-    const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const templateID = process.env.REACT_APP_EMAILJS_EMAIL_TEMPLATE_ID_1;
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-
     //deployed URL, local for now
     const deployedURL = "http://localhost:4000"
 
-    //creating a function to send verification email
-    function sendEmail(emailValues, alertMessage) {
-
-        emailjs.send(serviceID, templateID, emailValues, publicKey).then(
-            () => {
-                console.log("got here")
-                console.log(emailValues)
-                setRequestStatus(true);
-                setAlertMessage(alertMessage);
-                setAlertDisplay("block");
-                hideAlert();
-                setTimeout(() => navigate("/patient-sign-in"), 4000);
-            },
-            (err) => {
-                setRequestStatus(false);
-                console.log("failed")
-                console.log(err)
-                setAlertMessage(JSON.stringify(err));
-                setAlertDisplay("block");
-                hideAlert();
-            }
-        );
-    }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -87,7 +58,7 @@ function Register({userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDis
                         button_link: `${deployedURL}/confirm-email/${res.data.id}`,
                     };
 
-                    sendEmail(emailValues, "Email verification link sent!");
+                    sendEmail(emailValues, "Email verification link sent!", setTimeout(() => navigate("/patient-sign-in"), 4000));
 
                 })
                 .catch((error) => {

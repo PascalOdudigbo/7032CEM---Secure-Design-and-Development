@@ -10,7 +10,7 @@ import { BiSolidDashboard } from 'react-icons/bi';
 import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
 
 
-function Navbar({ userData, menuDisplay, setMenuDusplay }) {
+function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
     const navigate = useNavigate();
 
     return (
@@ -53,7 +53,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay }) {
                 }
 
                 {
-                    userData?.id && window.location.href.includes("portal") ?
+                    userData?.id && isAuthenticated?.authenticated && window.location.href.includes("portal") ?
                         <div className='flex__row_center app__navbar-menu' onClick={() => { setMenuDusplay(prevMenuDisplay => !prevMenuDisplay) }}>
                             <IconContext.Provider value={{ size: "30px", className: "app__navbar-menu-icon" }}>
                                 {menuDisplay ? <FaWindowClose /> : <GiHamburgerMenu />}
@@ -61,7 +61,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay }) {
 
                         </div>
                         :
-                        userData?.id ?
+                        userData?.id && isAuthenticated?.authenticated ? 
                             <div className='flex__row_center app__navbar-login'>
                                 <IconContext.Provider value={{ size: "30px", className: "app__navbar-login-icon" }}>
                                     <BiSolidDashboard />
