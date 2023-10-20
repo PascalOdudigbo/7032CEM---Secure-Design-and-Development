@@ -1,11 +1,13 @@
 @import "./app";
 @import "../components/Navbar/navbar";
-@import "../components/FormInput/formInput.scss";
+@import "../components/FormInput/formInput";
 @import "../pages/Home/_home";
-@import "../pages/Register/register.scss";
+@import "../pages/Register/register";
 @import "../pages/SignIn/signIn";
 @import "../components/Alert/alert";
 @import "../pages/UserAuth/user_auth";
+@import "../pages/VerifyEmail/verifyEmail";
+@import "../pages/DoctorPortal/doctorportal";
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 

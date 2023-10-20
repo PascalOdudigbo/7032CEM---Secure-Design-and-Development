@@ -45,7 +45,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
 
             <div className='app__navbar_links-wrapper'>
                 {
-                    window.location.href.includes("portal") ? null :
+                    window.location.href.includes("portal") || window.location.href.includes("confirm-email") ? null :
                         <ul className='app__navbar-links'>
                             <li className='p__opensans'><a href='/'>Home</a></li>
                             <li className='p__opensans'><a href='#aboutUs'>About us</a></li>
@@ -69,7 +69,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
                                 <a href={userData?.verification_status ? '/patient-portal' : '/doctor-portal'} className='p__opensans'>Dashboard</a>
                             </div>
                             :
-                        window.location.href.includes("sign-in") === false &&
+                        window.location.href.includes("sign-in") === false && window.location.href.includes("confirm-email") === false &&
                             <div className='flex__row_center app__navbar-login'>
                                 <IconContext.Provider value={{ size: "20px", className: "app__navbar-login-icon" }}>
                                     <AiFillLock />

@@ -28,8 +28,6 @@ function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRe
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-
-
     function handleLogin(e) {
         e.preventDefault();
         axios.post(isPatient ? "/patient-login" : "/doctor-login", {
@@ -69,7 +67,7 @@ function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRe
                     }
                 }
                 else {
-                    setTimeout(() => navigate("/`user`-authenticate"), 1500);
+                    setTimeout(() => navigate("/doctor-multi-auth"), 1500);
                 }
             })
             .catch(error => {
@@ -92,12 +90,13 @@ function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRe
                 userData={patientData?.verification_status ? patientData : doctorData}
                 menuDisplay={menuDisplay}
                 setMenuDusplay={setMenuDisplay}
+                isAuthenticated={isAuthenticated}
             />
 
 
             <div className='app_signin_register_form_and_space-wrapper'>
                 <div className='app_signin_register_space'>
-                    ...
+                    
                 </div>
                 <div className='app_signin_register_form-wrapper'>
                     <form className='app__signin-form' onSubmit={(e) => { handleLogin(e) }}>

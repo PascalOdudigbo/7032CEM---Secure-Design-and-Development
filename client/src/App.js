@@ -1,5 +1,5 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { Home, Register, SignIn, UserAuth } from "./pages";
+import { Home, Register, SignIn, UserAuth, VerifyEmail } from "./pages";
 import { useCallback, useEffect, useState } from "react";
 import { Alert } from "./components";
 import axios from "axios";
@@ -31,7 +31,7 @@ function App() {
   const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
   //defining a function to hide alerts
-  function hideAlert() {
+  const hideAlert = useCallback(() => {
     let timeOut = setTimeout(
       () => {
         setAlertDisplay("none");
@@ -40,7 +40,7 @@ function App() {
       2000,
       setAlertDisplay
     );
-  }
+  }, [])
 
   //creating a function to send multi-factor auth email 
   function sendEmail(emailValues, alertMessage, navigationFunction) {
@@ -73,23 +73,38 @@ function App() {
         if (error?.response) {
           //if data not fetched successfully
           setRequestStatus(false);
-          setAlertMessage("Something went wrong!");
-          setAlertDisplay("block");
+          // setAlertMessage("Something went wrong!");
+          // setAlertDisplay("block");
           hideAlert();
 
         }
       })
-  }, [hideAlert, setAlertDisplay, setAlertMessage, setRequestStatus])
+  }, [hideAlert, setRequestStatus])
 
+  //defining a function to implement user logout
+  function handleLogout() {
+    const isPatient = window.location.href.includes("patient")
+
+    fetch(isPatient? "/patient-logout" : "/doctor-logout", {
+      method: "DELETE",
+    }).then(() => {
+      setRequestStatus(true);
+      setAlertMessage("Logout successful!");
+      setAlertDisplay("block");
+      hideAlert();
+      isPatient ? setPatientData({}) : setDoctorData({});
+      setTimeout(() => navigate("/"), 1500);
+    })
+
+  }
 
   useEffect(() => {
-
     getData("/patient-loggedin", setPatientData)
     getData("/doctor-loggedin", setDoctorData)
     getData("/patient-multi-authed", setIsAuthenticated)
     getData("/doctor-multi-authed", setIsAuthenticated)
 
-}, [])
+  }, [getData])
 
   return (
     <div>
@@ -113,7 +128,7 @@ function App() {
 
         <Route path="/register" element={
           <Register
-            userData={patientData}
+            userData={patientData?.id ? patientData : doctorData?.id && doctorData}
             menuDisplay={menuDisplay}
             setMenuDisplay={setMenuDisplay}
             hideAlert={hideAlert}
@@ -122,13 +137,14 @@ function App() {
             setAlertMessage={setAlertMessage}
             patientData={patientData}
             setPatientData={setPatientData}
+            isAuthenticated={isAuthenticated}
 
           />
         } />
 
         <Route path="/patient-sign-in" element={
           <SignIn
-            userData={patientData}
+            userData={patientData?.id ? patientData : doctorData?.id && doctorData}
             menuDisplay={menuDisplay}
             setMenuDisplay={setMenuDisplay}
             hideAlert={hideAlert}
@@ -147,7 +163,7 @@ function App() {
 
         <Route path="/patient-multi-auth" element={
           <UserAuth
-            userData={patientData}
+            userData={patientData?.id ? patientData : doctorData?.id && doctorData}
             menuDisplay={menuDisplay}
             setMenuDisplay={setMenuDisplay}
             hideAlert={hideAlert}
@@ -166,7 +182,58 @@ function App() {
             sendEmail={sendEmail}
           />
         } />
-        
+
+        <Route path="/doctor-sign-in" element={
+          <SignIn
+            userData={patientData?.id ? patientData : doctorData?.id && doctorData}
+            menuDisplay={menuDisplay}
+            setMenuDisplay={setMenuDisplay}
+            hideAlert={hideAlert}
+            setAlertDisplay={setAlertDisplay}
+            setRequestStatus={setRequestStatus}
+            setAlertMessage={setAlertMessage}
+            patientData={patientData}
+            setPatientData={setPatientData}
+            doctorData={doctorData}
+            setDoctorData={setDoctorData}
+            setEncryptedCode={setEncryptedCode}
+            sendEmail={sendEmail}
+            isAuthenticated={isAuthenticated}
+          />
+        } />
+
+        <Route path="/doctor-multi-auth" element={
+          <UserAuth
+            userData={patientData?.id ? patientData : doctorData?.id && doctorData}
+            menuDisplay={menuDisplay}
+            setMenuDisplay={setMenuDisplay}
+            hideAlert={hideAlert}
+            setAlertDisplay={setAlertDisplay}
+            setRequestStatus={setRequestStatus}
+            setAlertMessage={setAlertMessage}
+            patientData={patientData}
+            setPatientData={setPatientData}
+            doctorData={doctorData}
+            setDoctorData={setDoctorData}
+            encryptedCode={encryptedCode}
+            setEncryptedCode={setEncryptedCode}
+            getData={getData}
+            isAuthenticated={isAuthenticated}
+            setIsAuthenticated={setIsAuthenticated}
+            sendEmail={sendEmail}
+          />
+        } />
+
+        <Route path="/confirm-email/*" element={
+          <VerifyEmail
+            hideAlert={hideAlert}
+            setAlertDisplay={setAlertDisplay}
+            setRequestStatus={setRequestStatus}
+            setAlertMessage={setAlertMessage}
+            setPatientData={setPatientData}
+          />
+        } />
+
       </Routes>
 
     </div>

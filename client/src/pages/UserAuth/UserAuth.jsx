@@ -30,7 +30,7 @@ function UserAuth({menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setR
     useEffect(() => {
         isPatient ? getData("/patient-loggedin", setPatientData) : getData("/doctor-loggedin", setDoctorData)
         isPatient? getData("/patient-multi-authed", setIsAuthenticated) : getData("/doctor-multi-authed", setIsAuthenticated)
-    }, [])
+    }, [getData, isPatient, setDoctorData, setIsAuthenticated, setPatientData])
 
     function handleVerifyCode(e) {
         e.preventDefault()

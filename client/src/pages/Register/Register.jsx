@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 
-function Register({ userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, patientData, setPatientData, sendEmail }) {
+function Register({ userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, patientData, setPatientData, sendEmail, isAuthenticated}) {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -81,12 +81,13 @@ function Register({ userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDi
                 userData={userData}
                 menuDisplay={menuDisplay}
                 setMenuDusplay={setMenuDisplay}
+                isAuthenticated={isAuthenticated}
             />
 
 
             <div className='app_signup_register_form_and_space-wrapper'>
                 <div className='app_signup_register_space'>
-                    ...
+                    
                 </div>
                 <div className='app_signup_register_form-wrapper'>
                     <form className='app__signup-form' onSubmit={(e) => handleSubmit(e)}>
