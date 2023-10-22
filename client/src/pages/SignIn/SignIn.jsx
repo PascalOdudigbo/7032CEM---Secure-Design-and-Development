@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 
-function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, patientData, setPatientData, doctorData, setDoctorData, setEncryptedCode, sendEmail, isAuthenticated}) {
+function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, patientData, setPatientData, doctorData, setDoctorData, setEncryptedCode, sendEmail, isAuthenticated }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
@@ -14,7 +14,7 @@ function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRe
     const isDoctor = window.location.href.includes("doctor")
 
     isPatient ? patientData?.verification_status && isAuthenticated?.authenticated && setTimeout(() => navigate("/patient-portal"), 100) :
-    isDoctor ? doctorData?.id && isAuthenticated?.authenticated && setTimeout(() => navigate("/doctor-portal"), 100) : console.log("");
+        isDoctor ? doctorData?.id && isAuthenticated?.authenticated && setTimeout(() => navigate("/doctor-portal"), 100) : console.log("");
 
 
     //encryption key
@@ -63,11 +63,23 @@ function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRe
                             email_to: response?.data?.email,
                         };
 
-                        sendEmail(emailValues, "Multifactor authentication code Sent!", setTimeout(() => navigate("/patient-multi-auth"), 1500));
+                        sendEmail(emailValues, "Multifactor authentication code Sent!", () => { setTimeout(() => navigate("/patient-multi-auth"), 1500) });
                     }
                 }
                 else {
-                    setTimeout(() => navigate("/doctor-multi-auth"), 1500);
+                    const authCode = getRandomPin(1000, 9999);
+                    setEncryptedCode(CryptoJS.AES.encrypt(authCode.toString(), encryptionKey))
+
+                    const emailValues = {
+                        email_title: "HAB Multifactor Authentication",
+                        image_url: "https://res.cloudinary.com/dr8mwphvk/image/upload/v1697720316/HAB_logo_bk55e1.png",
+                        user_name: `${response?.data?.first_name} ${response?.data?.last_name}`,
+                        email_body: `Your multifactor authentication code: ${authCode}`,
+                        email_to: response?.data?.email,
+                    };
+
+                    sendEmail(emailValues, "Multifactor authentication code Sent!", () => { setTimeout(() => navigate("/doctor-multi-auth"), 1500) });
+
                 }
             })
             .catch(error => {
@@ -96,7 +108,7 @@ function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRe
 
             <div className='app_signin_register_form_and_space-wrapper'>
                 <div className='app_signin_register_space'>
-                    
+
                 </div>
                 <div className='app_signin_register_form-wrapper'>
                     <form className='app__signin-form' onSubmit={(e) => { handleLogin(e) }}>
@@ -124,8 +136,9 @@ function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRe
                         <p className='p__opensans app__signin_form-signIn-text-link' onClick={() => navigate("/forgot-password")}>forgot password?</p>
 
                         <button className='custom__button app__signin_form-button'>Submit</button>
-                        <p className='p__opensans app__signin_form-signIn-text-link' onClick={() => navigate("/register")}>Don't have an account?</p>
-
+                        {
+                            isPatient && <p className='p__opensans app__signin_form-signIn-text-link' onClick={() => navigate("/register")}>Don't have an account?</p>
+                        }
                     </form>
                 </div>
             </div>

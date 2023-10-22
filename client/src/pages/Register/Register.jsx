@@ -30,8 +30,8 @@ function Register({ userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDi
         } else {
 
             const postData = {
-                first_name: firstName,
-                last_name: lastName,
+                first_name: `${firstName.trim().charAt(0).toUpperCase() + firstName.slice(1)}`,
+                last_name: `${lastName.trim().charAt(0).toUpperCase() + lastName.slice(1)}`,
                 email: email,
                 password: password,
                 password_confirmation: passwordConfirmation,
@@ -50,7 +50,7 @@ function Register({ userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDi
                     const emailValues = {
                         email_title: "HAB Verify Email",
                         image_url: "https://res.cloudinary.com/dr8mwphvk/image/upload/v1697720316/HAB_logo_bk55e1.png",
-                        user_name: `${firstName} ${lastName}`,
+                        user_name: `${firstName.trim().charAt(0).toUpperCase() + firstName.slice(1)}  ${lastName.trim().charAt(0).toUpperCase() + lastName.slice(1)}`,
                         email_body: `Welcom to HAB medics, we're glad to have you onboard. Please verify your email address by clicking on the link below`,
                         button_text: "Verify Email",
                         button_color: "#E03F3E",

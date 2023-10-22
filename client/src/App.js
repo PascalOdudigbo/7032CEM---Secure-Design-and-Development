@@ -1,5 +1,5 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { Home, Register, SignIn, UserAuth, VerifyEmail } from "./pages";
+import { Home, PatientPortal, Register, SignIn, UserAuth, VerifyEmail } from "./pages";
 import { useCallback, useEffect, useState } from "react";
 import { Alert } from "./components";
 import axios from "axios";
@@ -85,7 +85,7 @@ function App() {
   function handleLogout() {
     const isPatient = window.location.href.includes("patient")
 
-    fetch(isPatient? "/patient-logout" : "/doctor-logout", {
+    fetch(isPatient ? "/patient-logout" : "/doctor-logout", {
       method: "DELETE",
     }).then(() => {
       setRequestStatus(true);
@@ -231,6 +231,18 @@ function App() {
             setRequestStatus={setRequestStatus}
             setAlertMessage={setAlertMessage}
             setPatientData={setPatientData}
+          />
+        } />
+
+        <Route path="/patient-portal/*" element={
+          <PatientPortal
+            menuDisplay={menuDisplay}
+            setMenuDisplay={setMenuDisplay}
+            isAuthenticated={isAuthenticated}
+            patientData={patientData}
+            getData={getData}
+            handleLogout={handleLogout}
+
           />
         } />
 

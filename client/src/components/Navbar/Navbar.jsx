@@ -48,14 +48,14 @@ function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
                     window.location.href.includes("portal") || window.location.href.includes("confirm-email") ? null :
                         <ul className='app__navbar-links'>
                             <li className='p__opensans'><a href='/'>Home</a></li>
-                            <li className='p__opensans'><a href='#aboutUs'>About us</a></li>
+                            {/* <li className='p__opensans'><a href='#aboutUs'>About us</a></li> */}
                         </ul>
                 }
 
                 {
                     userData?.id && isAuthenticated?.authenticated && window.location.href.includes("portal") ?
                         <div className='flex__row_center app__navbar-menu' onClick={() => { setMenuDusplay(prevMenuDisplay => !prevMenuDisplay) }}>
-                            <IconContext.Provider value={{ size: "30px", className: "app__navbar-menu-icon" }}>
+                            <IconContext.Provider value={{ size: "32px", className: "app__navbar-menu-icon" }}>
                                 {menuDisplay ? <FaWindowClose /> : <GiHamburgerMenu />}
                             </IconContext.Provider>
 
@@ -63,7 +63,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
                         :
                         userData?.id && isAuthenticated?.authenticated ? 
                             <div className='flex__row_center app__navbar-login'>
-                                <IconContext.Provider value={{ size: "30px", className: "app__navbar-login-icon" }}>
+                                <IconContext.Provider value={{ size: "32px", className: "app__navbar-login-icon" }}>
                                     <BiSolidDashboard />
                                 </IconContext.Provider>
                                 <a href={userData?.verification_status ? '/patient-portal' : '/doctor-portal'} className='p__opensans'>Dashboard</a>
@@ -71,7 +71,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
                             :
                         window.location.href.includes("sign-in") === false && window.location.href.includes("confirm-email") === false &&
                             <div className='flex__row_center app__navbar-login'>
-                                <IconContext.Provider value={{ size: "20px", className: "app__navbar-login-icon" }}>
+                                <IconContext.Provider value={{ size: "25px", className: "app__navbar-login-icon" }}>
                                     <AiFillLock />
                                 </IconContext.Provider>
                                 <a href='/patient-sign-in' className='p__opensans'>Sign In</a>
