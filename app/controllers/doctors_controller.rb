@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[ show update destroy ]
 
-  @@doctor_services = DoctorServices new
+  @@doctor_services = DoctorServices.new
   
   # GET /doctors
   def index
@@ -22,7 +22,9 @@ class DoctorsController < ApplicationController
     if @doctor.save
       render json: @doctor, status: :created, location: @doctor
     else
-      render json: @doctor.errors, status: :unprocessable_entity
+      value = ''
+      @doctor.errors.as_json.map {|key, values| value += "#{key}: #{values[0]} " }
+      render json: {error: value}, status: :unprocessable_entity
     end
   end
 
@@ -62,7 +64,7 @@ class DoctorsController < ApplicationController
   end
 
   # GET /doctor-multi-authed
-  def is_patient_multi_authed
+  def is_doctor_multi_authed
     render json:  @@doctor_services.check_multiauth_status(session)
   end
 

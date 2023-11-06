@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :availabilities
   resources :doctors
   resources :patients
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   delete '/doctor-logout', to: 'doctors#doctor_logout'
   get '/doctor-multi-authed', to: 'doctors#is_doctor_multi_authed'
   patch '/change-doctor-multi-auth', to: 'doctors#change_doctor_multi_auth'
+  get '/doctor-availabilities/:doctor_id', to: 'availabilities#get_doctor_availabilities'
 
 
 

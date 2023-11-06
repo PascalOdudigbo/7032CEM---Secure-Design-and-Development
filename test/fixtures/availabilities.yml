@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: MyString
+  end_time: MyString
+  date: MyString
+  doctor: one
+
+two:
+  start_time: MyString
+  end_time: MyString
+  date: MyString
+  doctor: two

@@ -5,3 +5,4 @@ export {default as UserAuth} from "./UserAuth/UserAuth";
 export {default as VerifyEmail} from "./VerifyEmail/VerifyEmail";
 export {default as DoctorPortal} from "./DoctorPortal/DoctorPortal";
 export {default as PatientPortal} from "./PatientPortal/PatientPortal";
+export {default as DoctorManageAvailabilities} from "./DoctorManageAvailabilities/DoctorManageAvailabilities";

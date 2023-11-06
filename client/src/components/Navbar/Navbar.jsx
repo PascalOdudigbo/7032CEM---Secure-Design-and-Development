@@ -70,6 +70,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
                             </div>
                             :
                         window.location.href.includes("sign-in") === false && window.location.href.includes("confirm-email") === false &&
+                        window.location.href.includes("portal") === false &&
                             <div className='flex__row_center app__navbar-login'>
                                 <IconContext.Provider value={{ size: "25px", className: "app__navbar-login-icon" }}>
                                     <AiFillLock />

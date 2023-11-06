@@ -1,5 +1,5 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { Home, PatientPortal, Register, SignIn, UserAuth, VerifyEmail } from "./pages";
+import { DoctorPortal, Home, PatientPortal, Register, SignIn, UserAuth, VerifyEmail } from "./pages";
 import { useCallback, useEffect, useState } from "react";
 import { Alert } from "./components";
 import axios from "axios";
@@ -37,7 +37,7 @@ function App() {
         setAlertDisplay("none");
         clearTimeout(timeOut);
       },
-      2000,
+      5000,
       setAlertDisplay
     );
   }, [])
@@ -238,11 +238,32 @@ function App() {
           <PatientPortal
             menuDisplay={menuDisplay}
             setMenuDisplay={setMenuDisplay}
+            hideAlert={hideAlert}
+            setAlertDisplay={setAlertDisplay}
+            setRequestStatus={setRequestStatus}
+            setAlertMessage={setAlertMessage}
             isAuthenticated={isAuthenticated}
             patientData={patientData}
             getData={getData}
             handleLogout={handleLogout}
 
+          />
+        } />
+
+        <Route path="/doctor-portal/*" element={
+          <DoctorPortal
+            menuDisplay={menuDisplay}
+            setMenuDisplay={setMenuDisplay}
+            hideAlert={hideAlert}
+            setAlertDisplay={setAlertDisplay}
+            setRequestStatus={setRequestStatus}
+            setAlertMessage={setAlertMessage}
+            isAuthenticated={isAuthenticated}
+            doctorData={doctorData}
+            getData={getData}
+            handleLogout={handleLogout}
+            setDoctorData={setDoctorData}
+            setIsAuthenticated={setIsAuthenticated}
           />
         } />
 
