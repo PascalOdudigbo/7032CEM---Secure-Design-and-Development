@@ -16,6 +16,8 @@
 @import "../pages/PatientManageAppointments/patientManageAppointments";
 @import "../components/Availability/availability";
 @import "../components/PatientAppointment/patientAppointment";
+@import "../pages/DoctorManageAppointments/doctorManageAppointments";
+@import "../components/DoctorAppointment/doctorAppointment";
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
@@ -26,6 +28,7 @@
   // font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   //   monospace;
 
+  // --color-golden: #F29E23;
   --color-orange: #E03F3E;
   --color-turquoise: #058789;
   --color-black: #0C0C0C;

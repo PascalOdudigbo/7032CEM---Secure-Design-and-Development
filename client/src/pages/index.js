@@ -7,3 +7,4 @@ export {default as DoctorPortal} from "./DoctorPortal/DoctorPortal";
 export {default as PatientPortal} from "./PatientPortal/PatientPortal";
 export {default as DoctorManageAvailabilities} from "./DoctorManageAvailabilities/DoctorManageAvailabilities";
 export {default as PatientManageAppointments} from "./PatientManageAppointments/PatientManageAppointments";
+export {default as DoctorManageAppointments} from "./DoctorManageAppointments/DoctorManageAppointments";

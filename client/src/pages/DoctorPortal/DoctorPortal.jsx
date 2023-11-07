@@ -5,8 +5,9 @@ import axios from "axios";
 import { FaUserCircle } from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
 import DoctorManageAvailabilities from '../DoctorManageAvailabilities/DoctorManageAvailabilities';
+import DoctorManageAppointments from '../DoctorManageAppointments/DoctorManageAppointments';
 
-function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, isAuthenticated, doctorData, getData, handleLogout, setDoctorData, setIsAuthenticated }) {
+function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, isAuthenticated, doctorData, getData, handleLogout, setDoctorData, setIsAuthenticated, sendEmail }) {
   // creating data manaement state variables 
   const [availabilities, setAvailabilities] = useState([])
   const [appointments, setAppointments] = useState([])
@@ -16,6 +17,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
     doctorData?.id === undefined && getData("/doctor-loggedin", setDoctorData)
     isAuthenticated?.authenticated === undefined && getData("/doctor-multi-authed", setIsAuthenticated)
     availabilities.length === 0 && getData(`/doctor-availabilities/${doctorData?.id}`, setAvailabilities)
+    appointments.length === 0 && getData(`/doctor-appointments/${doctorData?.id}`, setAppointments)
   }, [])
 
   //creating the customer dashboard sub component
@@ -59,7 +61,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
           <div className='app_portal_menu-wrapper' style={{ display: menuDisplay ? "block" : "none" }}>
             <div className="app__portal_user_icon_and_name-wrapper">
               <button className="app__portal_user_icon-btn">{
-                <IconContext.Provider value={{ size: '40px', className: "app__portal-user-icon" }}>
+                <IconContext.Provider value={{ size: '30px', className: "app__portal-user-icon" }}>
                   <FaUserCircle />
                 </IconContext.Provider>
               }</button>
@@ -94,6 +96,21 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
                 getData={getData}
                 availabilities={availabilities}
                 setAvailabilities={setAvailabilities}
+              />
+            } />
+
+            <Route path="/manage-appointments" element={
+              <DoctorManageAppointments
+                appointments={appointments}
+                setAppointments={setAppointments}
+                getData={getData}
+                doctorData={doctorData}
+                sendEmail={sendEmail}
+                hideAlert={hideAlert}
+                setAlertDisplay={setAlertDisplay}
+                setRequestStatus={setRequestStatus}
+                setAlertMessage={setAlertMessage}
+               
               />
             } />
           </Routes>

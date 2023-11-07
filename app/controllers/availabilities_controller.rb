@@ -5,7 +5,7 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities
   def index
-    @availabilities = Availability.all
+    @availabilities = Availability.all.order(id: :desc)
 
     render json: @availabilities
   end
@@ -42,7 +42,7 @@ class AvailabilitiesController < ApplicationController
 
   # GET /doctor-availabilities/1
   def get_doctor_availabilities
-    render json: @@availabilities_service.doctor_availabilities(params)
+    render json: @@availabilities_service.doctor_availabilities(params).order(id: :desc)
   end
 
   private

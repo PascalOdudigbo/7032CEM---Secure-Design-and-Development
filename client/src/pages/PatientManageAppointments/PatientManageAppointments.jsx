@@ -10,7 +10,7 @@ function PatientManageAppointments({ patientData, availabilities, setAvailabilit
     function hasAlreadyBooked(availability){
 
     }
-    
+
     // creating a function to handle booking appointments
     function handleBookAppointment(availability) {
         const appointmentData = {
@@ -27,6 +27,16 @@ function PatientManageAppointments({ patientData, availabilities, setAvailabilit
                 hideAlert();
                 setAppointments([...appointments, res.data])
                 handleUpdateAvailabilityStatus(availability, "Pending")
+
+                const emailValues = {
+                    email_title: "HAB Appointment Request",
+                    image_url: "https://res.cloudinary.com/dr8mwphvk/image/upload/v1697720316/HAB_logo_bk55e1.png",
+                    user_name: `${availability?.doctor?.first_name} ${availability?.doctor?.last_name}`,
+                    email_body: `A patient has made an appointment request for the date (${availability?.date}) from ${availability?.start_time} to ${availability?.end_time}. Please attend to the request as soon as possible.`,
+                    email_to: availability?.doctor?.email
+                };
+        
+                sendEmail(emailValues, "Doctor appointment request notification sent!", ()=>{});
 
             })
             .catch(error => {
@@ -72,6 +82,17 @@ function PatientManageAppointments({ patientData, availabilities, setAvailabilit
 
           getData(`/patient-appointments/${patientData?.id}`, setAppointments)
           handleUpdateAvailabilityStatus(appointment?.availability, null)
+
+          const emailValues = {
+            email_title: "HAB Appointment Cancelled",
+            image_url: "https://res.cloudinary.com/dr8mwphvk/image/upload/v1697720316/HAB_logo_bk55e1.png",
+            user_name: `${appointment?.doctor?.first_name} ${appointment?.doctor?.last_name}`,
+            email_body: `A patient has cancelled an appointment for the date (${appointment?.availability?.date}) from ${appointment?.availability?.start_time} to ${appointment?.availability?.end_time}. Please take note.`,
+            email_to: appointment?.doctor?.email
+        };
+
+        sendEmail(emailValues, "Doctor appointment cancellation notification sent!", ()=>{});
+
 
         })
         .catch(error=>{
