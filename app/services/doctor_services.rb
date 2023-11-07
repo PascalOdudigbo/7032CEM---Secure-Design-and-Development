@@ -35,4 +35,10 @@ class DoctorServices
         {authenticated: session[:doctor_auth_status]}  
     end
 
+    #function to get all distinct doctor categories
+    def get_distinct_specialties
+        specialties = Doctor.distinct.pluck(:specialty)
+        specialties
+    end
+
 end

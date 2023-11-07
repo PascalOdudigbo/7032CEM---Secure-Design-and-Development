@@ -4,8 +4,21 @@ import { Route, Routes } from 'react-router-dom'
 import axios from "axios";
 import { FaUserCircle } from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
+import PatientManageAppointments from '../PatientManageAppointments/PatientManageAppointments';
 
-function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, isAuthenticated, patientData, getData, handleLogout }) {
+function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, isAuthenticated, setIsAuthenticated, patientData, setPatientData, getData, sendEmail, handleLogout }) {
+    const [specializations, setSpecializations] = useState([])
+    const [availabilities, setAvailabilities] = useState([])
+    const [appointments, setAppointments] = useState([])
+
+    useEffect(() => {
+        //confirming doctor is logged in and multi-authed on every refresh
+        patientData?.id === undefined && getData("/patient-loggedin", setPatientData)
+        isAuthenticated?.authenticated === undefined && getData("/patient-multi-authed", setIsAuthenticated)
+        specializations.length === 0 && getData("/doctors-specialties", setSpecializations);
+        availabilities.length === 0 && getData("/availabilities", setAvailabilities);
+        appointments.length === 0 && getData(`/patient-appointments/${patientData?.id}`, setAppointments)
+    }, [patientData])
 
     //creating the customer dashboard sub component
     function Dashboard() {
@@ -19,7 +32,7 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
                 <div className=' app__patient_portal_dashboard-statistic-wrapper'>
                     <div className="app__patient_portal_dashboard-statistic">
                         <h3 className="p__opensans app__patient_portal_dashboard-statistic-title">MY APPOINTMENTS</h3>
-                        <p className="app__patient_portal_dashboard-statistic-value">{0}</p>
+                        <p className="app__patient_portal_dashboard-statistic-value">{appointments?.length}</p>
                     </div>
 
                     <div className="app__patient_portal_dashboard-statistic">
@@ -61,7 +74,7 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
                     <div className='app_portal_menu-wrapper' style={{ display: menuDisplay ? "block" : "none" }}>
                         <div className="app__portal_user_icon_and_name-wrapper">
                             <button className="app__portal_user_icon-btn">{
-                                <IconContext.Provider value={{ size: '40px', className: "app__portal-user-icon" }}>
+                                <IconContext.Provider value={{ size: '30px', className: "app__portal-user-icon" }}>
                                     <FaUserCircle />
                                 </IconContext.Provider>
                             }</button>
@@ -72,8 +85,8 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
                         <div className='app_portal_menu_items-wrapper'>
                             <div className='app__navbar-smallscreen_links'>
                                 <p className='p__opensans'><a href='/'>Home</a></p>
-                                <p className='p__opensans'><a href='/customer-portal'>Dashboard</a></p>
-                                <p className='p__opensans'><a href='#events'>Appointments</a></p>
+                                <p className='p__opensans'><a href='/patient-portal'>Dashboard</a></p>
+                                <p className='p__opensans'><a href='/patient-portal/appointments'>Appointments</a></p>
                                 <p className='p__opensans'><a href='#contactus'>Records</a></p>
                                 <p className='p__opensans'><a href='/faqs'>Modification Requests</a></p>
                                 <p className='p__opensans' onClick={() => { handleLogout() }}>Logout</p>
@@ -86,6 +99,22 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
 
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
+                        <Route path="/appointments" element={
+                            <PatientManageAppointments
+                                patientData={patientData}
+                                availabilities={availabilities}
+                                setAvailabilities={setAvailabilities}
+                                getData={getData}
+                                hideAlert={hideAlert}
+                                setAlertDisplay={setAlertDisplay}
+                                setRequestStatus={setRequestStatus}
+                                setAlertMessage={setAlertMessage}
+                                appointments={appointments}
+                                setAppointments={setAppointments}
+                                specializations={specializations}
+                                sendEmail={sendEmail}
+                            />
+                        } />
                     </Routes>
                 </div>
 

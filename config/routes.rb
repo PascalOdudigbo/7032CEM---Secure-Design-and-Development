@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appointments
   resources :availabilities
   resources :doctors
   resources :patients
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   delete '/patient-logout', to: 'patients#patient_logout'
   get '/patient-multi-authed', to: 'patients#is_patient_multi_authed'
   patch '/change-patient-multi-auth', to: 'patients#change_patient_multi_auth'
+  get '/patient-appointments/:patient_id', to: 'appointments#get_patient_appointments'
 
 
   post '/doctor-login', to: 'doctors#doctor_login'
@@ -20,6 +22,9 @@ Rails.application.routes.draw do
   get '/doctor-multi-authed', to: 'doctors#is_doctor_multi_authed'
   patch '/change-doctor-multi-auth', to: 'doctors#change_doctor_multi_auth'
   get '/doctor-availabilities/:doctor_id', to: 'availabilities#get_doctor_availabilities'
+  get '/doctors-specialties', to: 'doctors#get_specialties'
+  get '/doctor-appointments/:doctor_id', to: 'appointments#get_doctor_appointments'
+
 
 
 

@@ -1,0 +1,156 @@
+.app__patient_manage_appointments-wrapper{
+    height: calc(100vh - 112px);
+    width: 100%;
+
+    .app__patient_manage_appointments_title{
+        margin-left: 20px;
+        margin-top: 20px;
+        font-size: 35px;
+        font-weight: 900;
+    }
+
+    .app__patient_manage_appointments_viewAvailabilities_and_appointment-wrapper{
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: top;
+
+
+        .app__patient_manage_appointments_view_availabilities-wrapper{
+            width: 35%;
+            box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+            border-radius: 5px;
+            background-color: var(--color-white);
+            min-height: 400px;
+            max-height: 60vh;
+            overflow-y: scroll;
+
+            .app__patient_manage_appointments_availabilities_title{
+                margin-top: 10px;
+                font-size: 25px;
+                font-weight: 900;
+                margin-left: 2%;
+            }
+
+            
+            .app__patient_manage_appointments_label_and_dropdown-wrapper{
+                width: 96%;
+                margin-left: auto;
+                margin-right: auto;
+
+                .app__patient_manage_appointments_label{
+                    color: var(--color-black);
+                    font-weight: 500;
+                    font-size: 14px;
+                }
+            }
+
+
+            .app__patient_manage_appointments_table {
+                margin-left: auto;
+                margin-right: auto;
+                width: 96%;
+                margin-top: 20px;
+                margin-bottom: 20px;
+        
+                .app__patient_manage_appointments_table_headers-wrapper {
+                    border-radius: 5px;
+        
+                    .app__patient_manage_appointments_table_header {
+                        height: 10px;
+                        padding: 10px;
+                        background-color: var(--color-turquoise);
+                        font-size: 0.9em;
+                        font-weight: 600;
+                        color: var(--color-orange);
+                    }
+        
+                    
+        
+                }
+        
+            }
+        
+            .app__patient_manage_appointments_table_body_no_submissions{
+                color: var(--color-black);
+                width: 100%;
+                text-align: center;
+                font-size: 1.6em;
+                margin-top: 5px;
+            }
+        }
+        .app__patient_manage_appointments_view_availabilities-wrapper::-webkit-scrollbar{
+            display: none;
+        }
+
+        .app__patient_manage_appointments_view_appointments-wrapper{
+            width: 55%;
+            box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+            border-radius: 5px;
+            background-color: var(--color-white);
+            min-height: 400px;
+            max-height: 60vh;
+            overflow-y: scroll;
+
+            .app__patient_manage_appointments_appointments_title{
+                margin-top: 10px;
+                font-size: 25px;
+                font-weight: 900;
+                margin-left: 2%;
+            }
+
+            
+            .app__patient_manage_appointments_label_and_dropdown-wrapper{
+                width: 96%;
+                margin-left: auto;
+                margin-right: auto;
+
+                .app__patient_manage_appointments_label{
+                    color: var(--color-black);
+                    font-weight: 500;
+                    font-size: 14px;
+                }
+            }
+
+
+            .app__patient_manage_appointments_table {
+                margin-left: auto;
+                margin-right: auto;
+                width: 96%;
+                margin-top: 20px;
+                margin-bottom: 20px;
+        
+                .app__patient_manage_appointments_table_headers-wrapper {
+                    border-radius: 5px;
+        
+                    .app__patient_manage_appointments_table_header {
+                        height: 10px;
+                        padding: 10px;
+                        background-color: var(--color-turquoise);
+                        font-size: 0.9em;
+                        font-weight: 600;
+                        color: var(--color-orange);
+                    }
+        
+                    
+        
+                }
+        
+            }
+        
+            .app__patient_manage_appointments_table_body_no_submissions{
+                color: var(--color-black);
+                width: 100%;
+                text-align: center;
+                font-size: 1.6em;
+                margin-top: 5px;
+            }
+        }
+        .app__patient_manage_appointments_view_appointments-wrapper::-webkit-scrollbar{
+            display: none;
+        }
+
+
+    }
+
+}

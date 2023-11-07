@@ -44,7 +44,6 @@ function App() {
 
   //creating a function to send multi-factor auth email 
   function sendEmail(emailValues, alertMessage, navigationFunction) {
-
     emailjs.send(serviceID, templateID, emailValues, publicKey).then(
       () => {
         setRequestStatus(true);
@@ -137,6 +136,7 @@ function App() {
             setAlertMessage={setAlertMessage}
             patientData={patientData}
             setPatientData={setPatientData}
+            sendEmail={sendEmail}
             isAuthenticated={isAuthenticated}
 
           />
@@ -243,8 +243,11 @@ function App() {
             setRequestStatus={setRequestStatus}
             setAlertMessage={setAlertMessage}
             isAuthenticated={isAuthenticated}
+            setIsAuthenticated={setIsAuthenticated}
             patientData={patientData}
+            setPatientData={setPatientData}
             getData={getData}
+            sendEmail={sendEmail}
             handleLogout={handleLogout}
 
           />

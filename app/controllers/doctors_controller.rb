@@ -73,6 +73,11 @@ class DoctorsController < ApplicationController
     render json: @@doctor_services.change_multiauth_status(session, params)
   end
 
+  # GET /doctors-specialties
+  def get_specialties
+    render json: @@doctor_services.get_distinct_specialties
+  end
+
 
 
   private

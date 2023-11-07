@@ -62,24 +62,6 @@ function DoctorManageAvailabilities({ doctorData, hideAlert, setAlertDisplay, se
 
   // A function to delete an availability
   function handelDeleteAvailability(availability) {
-    axios.delete(`/availabilities/${availability?.id}`)
-      .then(() => {
-        setRequestStatus(true);
-        setAlertMessage("Availability deleted successfully!");
-        setAlertDisplay("block");
-        hideAlert();
-        getData(`/doctor-availabilities/${doctorData?.id}`, setAvailabilities)
-
-
-      })
-      .catch(error=>{
-        if(error.response){
-          setRequestStatus(false);
-          setAlertMessage("Something went wrong, please try again!");
-          setAlertDisplay("block");
-          hideAlert();
-        }
-      })
   }
 
 

@@ -68,6 +68,8 @@
             border-radius: 5px;
             background-color: var(--color-white);
             min-height: 400px;
+            max-height: 60vh;
+            overflow-y: scroll;
 
 
             .app__doctor_manage_availabilities_table {
@@ -75,6 +77,7 @@
                 margin-right: auto;
                 width: 96%;
                 margin-top: 20px;
+                margin-bottom: 20px;
         
                 .app__doctor_manage_availabilities_table_headers-wrapper {
                     border-radius: 5px;
@@ -101,6 +104,9 @@
                 font-size: 1.6em;
                 margin-top: 5px;
             }
+        }
+        .app__doctor_manage_availabilitie_view_availabilities-wrapper::-webkit-scrollbar{
+            display: none;
         }
     }
 

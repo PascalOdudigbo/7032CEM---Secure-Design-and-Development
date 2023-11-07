@@ -58,7 +58,7 @@ function Register({ userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDi
                         button_link: `${deployedURL}/confirm-email/${res.data.id}`,
                     };
 
-                    sendEmail(emailValues, "Email verification link sent!", setTimeout(() => navigate("/patient-sign-in"), 4000));
+                    sendEmail(emailValues, "Email verification link sent!", ()=>{setTimeout(() => navigate("/patient-sign-in"), 3000)});
 
                 })
                 .catch((error) => {

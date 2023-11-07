@@ -14,6 +14,7 @@ function VerifyEmail({ hideAlert, setAlertDisplay, setRequestStatus, setAlertMes
         const patientData = {
             verification_status: true
         }
+        
         axios.patch(`/patients/${currentLink[currentLink.length - 1]}`, patientData)
             .then(res => {
                 setRequestStatus(true);

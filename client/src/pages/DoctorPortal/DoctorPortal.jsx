@@ -15,10 +15,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
     //confirming doctor is logged in and multi-authed on every refresh
     doctorData?.id === undefined && getData("/doctor-loggedin", setDoctorData)
     isAuthenticated?.authenticated === undefined && getData("/doctor-multi-authed", setIsAuthenticated)
-    getData(`/doctor-availabilities/${doctorData?.id}`, setAvailabilities)
-
-
-
+    availabilities.length === 0 && getData(`/doctor-availabilities/${doctorData?.id}`, setAvailabilities)
   }, [])
 
   //creating the customer dashboard sub component
@@ -41,8 +38,6 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
           </div>
 
         </div>
-
-
 
       </div>
     )
