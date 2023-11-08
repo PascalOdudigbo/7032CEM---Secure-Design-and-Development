@@ -7,12 +7,12 @@ class PatientsController < ApplicationController
   def index
     @patients = Patient.all
 
-    render json: @patients
+    render json: @patients, include: ["appointments", "doctors", ["health_records", "health_records.doctor", ["health_records.appointment", "health_records.appointment.availability"]], "patient_consents"]
   end
 
   # GET /patients/1
   def show
-    render json: @patient
+    render json: @patient, include: ["appointments", "doctors", ["health_records", "health_records.doctor", ["health_records.appointment", "health_records.appointment.availability"]], "patient_consents"]
   end
 
   # POST /patients
@@ -29,7 +29,7 @@ class PatientsController < ApplicationController
   # PATCH/PUT /patients/1
   def update
     if @patient.update(patient_params)
-      render json: @patient
+      render json: @patient, include: ["appointments", "doctors", ["health_records", "health_records.doctor", ["health_records.appointment", "health_records.appointment.availability"]], "patient_consents"]
     else
       render json: @patient.errors, status: :unprocessable_entity
     end

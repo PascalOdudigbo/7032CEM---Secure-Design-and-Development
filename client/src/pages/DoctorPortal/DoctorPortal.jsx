@@ -7,6 +7,7 @@ import { IconContext } from "react-icons/lib";
 import DoctorManageAvailabilities from '../DoctorManageAvailabilities/DoctorManageAvailabilities';
 import DoctorManageAppointments from '../DoctorManageAppointments/DoctorManageAppointments';
 import DoctorPatients from '../DoctorPatients/DoctorPatients';
+import { DoctorViewPatientRecords } from '..';
 
 function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, isAuthenticated, doctorData, getData, handleLogout, setDoctorData, setIsAuthenticated, sendEmail }) {
   // creating data manaement state variables 
@@ -15,6 +16,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
   const [targetAppointment, setTargetAppointment] = useState({})
   const [patients, setPatients] = useState([])
   const [targetPatient, setTargetPatient] = useState({})
+  const [targetHealthRecord, setTargetHealthRecord] = useState({})
 
   useEffect(() => {
     //confirming doctor is logged in and multi-authed on every refresh
@@ -37,12 +39,12 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
         <div className=' app__doctor_portal_dashboard-statistic-wrapper'>
           <div className="app__doctor_portal_dashboard-statistic">
             <h3 className="p__opensans app__doctor_portal_dashboard-statistic-title">MY APPOINTMENTS</h3>
-            <p className="app__doctor_portal_dashboard-statistic-value">{0}</p>
+            <p className="app__doctor_portal_dashboard-statistic-value">{appointments?.length}</p>
           </div>
 
           <div className="app__doctor_portal_dashboard-statistic">
             <h3 className="p__opensans app__doctor_portal_dashboard-statistic-title">MY PATIENTS</h3>
-            <p className="app__doctor_portal_dashboard-statistic-value">{0}</p>
+            <p className="app__doctor_portal_dashboard-statistic-value">{patients?.length}</p>
           </div>
 
         </div>
@@ -123,7 +125,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
             } />
 
 
-            <Route path="/patients/*" element={
+            <Route path="/patients/" element={
               <DoctorPatients
                 patients={patients}
                 setPatients={setPatients}
@@ -135,6 +137,24 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
                 getData={getData}
                 sendEmail={sendEmail}
                 setTargetPatient={setTargetPatient}
+              />
+
+            } />
+
+            <Route path="/patients/view-health-records/*" element={
+              <DoctorViewPatientRecords
+                doctorData={doctorData}
+                targetPatient={targetPatient}
+                setTargetPatient={setTargetPatient}
+                targetHealthRecord={targetHealthRecord}
+                setTargetHealthRecord={setTargetHealthRecord}
+                hideAlert={hideAlert}
+                setAlertDisplay={setAlertDisplay}
+                setRequestStatus={setRequestStatus}
+                setAlertMessage={setAlertMessage}
+                getData={getData}
+                sendEmail={sendEmail}
+                setPatients={setPatients}
               />
 
             } />

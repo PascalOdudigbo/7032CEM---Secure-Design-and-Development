@@ -11,3 +11,5 @@ export {default as FormTextArea} from "./FormTextArea/FormTextArea";
 export {default as DoctorPatient} from "./DoctorPatient/DoctorPatient";
 export {default as PatientConsentRequest} from "./PatientConsentRequest/PatientConsentRequest";
 export {default as Search} from "./Search/Search";
+export {default as DoctorViewPatientRecord} from "./DoctorViewPatientRecord/DoctorViewPatientRecord";
+export {default as DoctorEditHealthRecord} from "./DoctorEditHealthRecord/DoctorEditHealthRecord";

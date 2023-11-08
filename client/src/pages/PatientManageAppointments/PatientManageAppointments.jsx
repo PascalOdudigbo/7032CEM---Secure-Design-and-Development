@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Availability, Dropdown, PatientAppointment } from '../../components'
 import axios from 'axios';
 
-function PatientManageAppointments({ patientData, availabilities, setAvailabilities, getData, appointments, setAppointments, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, specializations, sendEmail}) {
+function PatientManageAppointments({ patientData, availabilities, setAvailabilities, getData, appointments, setAppointments, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, specializations, sendEmail }) {
     const [specialization, setSpecialization] = useState("Select Specialization");
     console.log(appointments)
 
     //a function to check if patient already has an apointment on that day
-    function hasAlreadyBooked(availability){
+    function hasAlreadyBooked(availability) {
 
     }
 
@@ -16,7 +16,7 @@ function PatientManageAppointments({ patientData, availabilities, setAvailabilit
         const appointmentData = {
             patient_id: patientData?.id,
             availability_id: availability?.id,
-            status: `Pending` 
+            status: `Pending`
         }
 
         axios.post("/appointments", appointmentData)
@@ -35,8 +35,8 @@ function PatientManageAppointments({ patientData, availabilities, setAvailabilit
                     email_body: `A patient has made an appointment request for the date (${availability?.date}) from ${availability?.start_time} to ${availability?.end_time}. Please attend to the request as soon as possible.`,
                     email_to: availability?.doctor?.email
                 };
-        
-                sendEmail(emailValues, "Doctor appointment request notification sent!", ()=>{});
+
+                sendEmail(emailValues, "Doctor appointment request notification sent!", () => { });
 
             })
             .catch(error => {
@@ -51,62 +51,62 @@ function PatientManageAppointments({ patientData, availabilities, setAvailabilit
     }
 
     //a function to help update the status of the booked availability
-    function handleUpdateAvailabilityStatus(availability, status){
-        axios.patch(`/availabilities/${availability?.id}`, {status: status})
-        .then(res => {
-            setRequestStatus(true);
+    function handleUpdateAvailabilityStatus(availability, status) {
+        axios.patch(`/availabilities/${availability?.id}`, { status: status })
+            .then(res => {
+                setRequestStatus(true);
                 setAlertMessage("Availability status updated successfully!");
                 setAlertDisplay("block");
                 hideAlert();
                 getData("/availabilities", setAvailabilities);
-        })
-        .catch(error => {
-            if (error.response) {
-                setRequestStatus(false);
-                setAlertMessage("Availability status not updated!");
-                setAlertDisplay("block");
-                hideAlert();
+            })
+            .catch(error => {
+                if (error.response) {
+                    setRequestStatus(false);
+                    setAlertMessage("Availability status not updated!");
+                    setAlertDisplay("block");
+                    hideAlert();
 
-            }
-        })
+                }
+            })
     }
 
     // a function to cancel an appointment
-    function handleCancelAppointment(appointment){
+    function handleCancelAppointment(appointment) {
         axios.delete(`/appointments/${appointment?.id}`)
-        .then(() => {
-          setRequestStatus(true);
-          setAlertMessage("Appointment cancelled successfully!");
-          setAlertDisplay("block");
-          hideAlert();
+            .then(() => {
+                setRequestStatus(true);
+                setAlertMessage("Appointment cancelled successfully!");
+                setAlertDisplay("block");
+                hideAlert();
 
-          getData(`/patient-appointments/${patientData?.id}`, setAppointments)
-          handleUpdateAvailabilityStatus(appointment?.availability, null)
+                getData(`/patient-appointments/${patientData?.id}`, setAppointments)
+                handleUpdateAvailabilityStatus(appointment?.availability, null)
 
-          const emailValues = {
-            email_title: "HAB Appointment Cancelled",
-            image_url: "https://res.cloudinary.com/dr8mwphvk/image/upload/v1697720316/HAB_logo_bk55e1.png",
-            user_name: `${appointment?.doctor?.first_name} ${appointment?.doctor?.last_name}`,
-            email_body: `A patient has cancelled an appointment for the date (${appointment?.availability?.date}) from ${appointment?.availability?.start_time} to ${appointment?.availability?.end_time}. Please take note.`,
-            email_to: appointment?.doctor?.email
-        };
+                const emailValues = {
+                    email_title: "HAB Appointment Cancelled",
+                    image_url: "https://res.cloudinary.com/dr8mwphvk/image/upload/v1697720316/HAB_logo_bk55e1.png",
+                    user_name: `${appointment?.doctor?.first_name} ${appointment?.doctor?.last_name}`,
+                    email_body: `A patient has cancelled an appointment for the date (${appointment?.availability?.date}) from ${appointment?.availability?.start_time} to ${appointment?.availability?.end_time}. Please take note.`,
+                    email_to: appointment?.doctor?.email
+                };
 
-        sendEmail(emailValues, "Doctor appointment cancellation notification sent!", ()=>{});
+                sendEmail(emailValues, "Doctor appointment cancellation notification sent!", () => { });
 
 
-        })
-        .catch(error=>{
-          if(error.response){
-            setRequestStatus(false);
-            setAlertMessage("Something went wrong, please try again!");
-            setAlertDisplay("block");
-            hideAlert();
-          }
-        })
+            })
+            .catch(error => {
+                if (error.response) {
+                    setRequestStatus(false);
+                    setAlertMessage("Something went wrong, please try again!");
+                    setAlertDisplay("block");
+                    hideAlert();
+                }
+            })
     }
 
     //a function to check if availability date hasn't passed
-    function isAvailabilityValid(availability){
+    function isAvailabilityValid(availability) {
         //getting the current date
         const currentDate = new Date();
         const availabilityDate = new Date(availability?.date);
@@ -202,7 +202,7 @@ function PatientManageAppointments({ patientData, availabilities, setAvailabilit
 
                         <tbody>
                             {appointments?.map((appointment) => (
-                                
+
                                 <PatientAppointment
                                     key={appointment?.id}
                                     appointment={appointment}

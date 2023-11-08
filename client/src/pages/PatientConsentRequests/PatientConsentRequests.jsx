@@ -30,7 +30,7 @@ function PatientConsentRequests({
                     email_to: consent?.doctor?.email
                 };
 
-                // sendEmail(emailValues, "Doctor has been notified of decision!", () => { });
+                sendEmail(emailValues, "Doctor has been notified of decision!", () => { });
 
                 getData(`/a_patient_consents/${patientData?.id}`, setConsentRequests)
             })

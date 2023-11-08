@@ -80,7 +80,7 @@ class DoctorsController < ApplicationController
 
   # GET /doctor-patients/:doctor_id
   def get_doctor_patients
-    render json: @@doctor_services.doctor_patients(params), include: ["appointments", "doctors", "health_records", ["patient_consents", "patient_consents.doctor"]]
+    render json: @@doctor_services.doctor_patients(params) , include: ["appointments", "doctors", ["health_records", "health_records.doctor", ["health_records.appointment", "health_records.appointment.availability"]], ["patient_consents", "patient_consents.doctor"]]
   end
 
 

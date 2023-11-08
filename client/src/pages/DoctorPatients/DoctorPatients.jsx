@@ -2,7 +2,7 @@ import React from 'react'
 import { DoctorPatient } from '../../components'
 import axios from 'axios'
 
-function DoctorPatients({ patients, setPatients, doctorData, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, getData, sendEmail, setTargetPatient}) {
+function DoctorPatients({ patients, setPatients, doctorData, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, getData, sendEmail, setTargetPatient }) {
 
     // A function to confirm if doctor has patient consent to view and modify records
     function doIHaveConscent(patient) {
@@ -11,7 +11,7 @@ function DoctorPatients({ patients, setPatients, doctorData, hideAlert, setAlert
             if (consent?.doctor?.id === doctorData?.id && consent?.status === "Granted") {
                 access = 2
             }
-            else if(consent?.doctor?.id === doctorData?.id){
+            else if (consent?.doctor?.id === doctorData?.id) {
                 access = 1
             }
         })
@@ -19,26 +19,38 @@ function DoctorPatients({ patients, setPatients, doctorData, hideAlert, setAlert
     }
 
     // A function to handle requesting for access to health records
-    function handleAccessRequest(patient){
-        axios.post("/patient_consents", { patient_id: patient?.id, doctor_id: doctorData?.id, status: "Requested"})
-        .then(res => {
-          setRequestStatus(true);
-          setAlertMessage("Consent request sent successfully!");
-          setAlertDisplay("block");
-          hideAlert();
-          getData(`/doctor-patients/${doctorData?.id}`, setPatients)
-          // getData(`/doctor-availabilities/${doctorData?.id}`, setAvailabilities)
-        })
-        .catch(error => {
-          if (error.response) {
-            setRequestStatus(false);
-            setAlertMessage("Something went wrong, please try again!");
-            setAlertDisplay("block");
-            hideAlert();
-          }
-        })
+    function handleAccessRequest(patient) {
+        axios.post("/patient_consents", { patient_id: patient?.id, doctor_id: doctorData?.id, status: "Requested" })
+            .then(res => {
+                setRequestStatus(true);
+                setAlertMessage("Consent request sent successfully!");
+                setAlertDisplay("block");
+                hideAlert();
+
+                const emailValues = {
+                    email_title: "HAB Health Records Access Request",
+                    image_url: "https://res.cloudinary.com/dr8mwphvk/image/upload/v1697720316/HAB_logo_bk55e1.png",
+                    user_name: `${patient?.first_name} ${patient?.last_name}`,
+                    email_body: `Your doctor Dr (${doctorData?.first_name}) ${doctorData?.last_name} has requested access to your health records. Please attend to the request`,
+                    email_to: patient?.email
+                };
+
+                sendEmail(emailValues, "Doctor appointment cancellation notification sent!", () => { });
+
+                getData(`/doctor-patients/${doctorData?.id}`, setPatients)
+
+
+            })
+            .catch(error => {
+                if (error.response) {
+                    setRequestStatus(false);
+                    setAlertMessage("Something went wrong, please try again!");
+                    setAlertDisplay("block");
+                    hideAlert();
+                }
+            })
     }
-    
+
 
     return (
         <div className='app__doctor_patients-wrapper'>
