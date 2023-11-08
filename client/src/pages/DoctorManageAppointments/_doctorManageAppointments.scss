@@ -24,6 +24,8 @@
             font-weight: 900;
         }
 
+      
+
         .app__doctor_manage_appointments_icon_and_button-wrapper {
             display: flex;
             flex-direction: row;
@@ -52,6 +54,13 @@
             }
         }
 
+    }
+
+    .app__doctor_manage_appointments_create_health_record-wrapper{
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
     }
 
 

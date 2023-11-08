@@ -11,6 +11,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
   // creating data manaement state variables 
   const [availabilities, setAvailabilities] = useState([])
   const [appointments, setAppointments] = useState([])
+  const [targetAppointment, setTargetAppointment] = useState({})
 
   useEffect(() => {
     //confirming doctor is logged in and multi-authed on every refresh
@@ -99,7 +100,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
               />
             } />
 
-            <Route path="/manage-appointments" element={
+            <Route path="/manage-appointments/*" element={
               <DoctorManageAppointments
                 appointments={appointments}
                 setAppointments={setAppointments}
@@ -110,7 +111,8 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
                 setAlertDisplay={setAlertDisplay}
                 setRequestStatus={setRequestStatus}
                 setAlertMessage={setAlertMessage}
-               
+                targetAppointment={targetAppointment}
+                setTargetAppointment={setTargetAppointment}
               />
             } />
           </Routes>

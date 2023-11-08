@@ -10,4 +10,9 @@ class Doctor < ApplicationRecord
     # ensuring all doctor emails are unique
     validates :email, presence: true, uniqueness: true
 
+    has_many :availabilities
+    has_many :appointments, :through => :availabilities
+    has_many :patients, through: :appointments
+    has_many :health_records
+
 end

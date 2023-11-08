@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_06_232824) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_08_001520) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_232824) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "health_records", force: :cascade do |t|
+    t.bigint "patient_id", null: false
+    t.bigint "doctor_id", null: false
+    t.bigint "appointment_id", null: false
+    t.string "health_information"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_health_records_on_appointment_id"
+    t.index ["doctor_id"], name: "index_health_records_on_doctor_id"
+    t.index ["patient_id"], name: "index_health_records_on_patient_id"
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -58,4 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_232824) do
   add_foreign_key "appointments", "availabilities"
   add_foreign_key "appointments", "patients"
   add_foreign_key "availabilities", "doctors"
+  add_foreign_key "health_records", "appointments"
+  add_foreign_key "health_records", "doctors"
+  add_foreign_key "health_records", "patients"
 end

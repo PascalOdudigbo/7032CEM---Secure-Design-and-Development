@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { DoctorAppointment } from "../../components";
 import axios from "axios";
+import { Route, Routes } from "react-router-dom";
+import HealthRecord from "../../components/DoctorCreateHealthRecord/DoctorCreateHealthRecord";
 
 
 function DoctorManageAppointments({
@@ -8,9 +10,8 @@ function DoctorManageAppointments({
     setAppointments,
     getData,
     doctorData,
-    sendEmail, setRequestStatus, setAlertMessage, setAlertDisplay, hideAlert,
+    sendEmail, setRequestStatus, setAlertMessage, setAlertDisplay, hideAlert, targetAppointment, setTargetAppointment
 }) {
-    console.log(appointments)
 
     //a function to help update the status of the booked availability
     function handleUpdateAppointmentStatus(appointment, status) {
@@ -20,7 +21,6 @@ function DoctorManageAppointments({
                 setAlertMessage(`Appointment ${status} successfully!`);
                 setAlertDisplay("block");
                 hideAlert();
-                getData(`/doctor-appointments/${doctorData?.id}`, setAppointments)
 
                 const emailValues = {
                     email_title: "HAB Appointment Request Information",
@@ -31,6 +31,8 @@ function DoctorManageAppointments({
                 };
 
                 sendEmail(emailValues, "Patient has been notified of decision!", () => { });
+
+                getData(`/doctor-appointments/${doctorData?.id}`, setAppointments)
             })
             .catch(error => {
                 if (error.response) {
@@ -54,6 +56,24 @@ function DoctorManageAppointments({
                 <h1 className="headtext__cormorant app__doctor_manage_appointments_page_title">APPOINTMENTS</h1>
             </div>
 
+            <div className="app__doctor_manage_appointments_create_health_record-wrapper">
+                <Routes>
+                    <Route path="/create-health-record/*" element={
+                        <HealthRecord
+                            doctorData={doctorData}
+                            setAppointments={setAppointments}
+                            targetAppointment={targetAppointment}
+                            setTargetAppointment={setTargetAppointment}
+                            setRequestStatus={setRequestStatus}
+                            setAlertDisplay={setAlertDisplay}
+                            setAlertMessage={setAlertMessage}
+                            hideAlert={hideAlert}
+                            getData={getData}
+                        />
+                    }/>
+                </Routes>
+            </div>
+
             <table className="app__doctor_manage_appointments_table">
                 <thead>
                     <tr className="app__doctor_manage_appointments_table_headers-wrapper">
@@ -74,6 +94,7 @@ function DoctorManageAppointments({
                             appointments={appointments}
                             setAppointments={setAppointments}
                             handleUpdateAppointmentStatus={handleUpdateAppointmentStatus}
+                            setTargetAppointment={setTargetAppointment}
                         />
                     ))}
                 </tbody>

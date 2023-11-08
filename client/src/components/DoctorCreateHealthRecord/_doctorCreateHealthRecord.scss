@@ -1,0 +1,56 @@
+.app__health_record-wrapper {
+    background-color: white;
+    height: 70%;
+    top: 10%;
+    // margin-bottom: 2.5%;
+    position: fixed;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5 !important;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border-radius: 5px;
+
+    .app__health_record_btn_close_page {
+        border: none;
+        background-color: transparent;
+        margin-left: 95%;
+
+        .app__health_record_btn_close_page_icon {
+            color: red;
+        }
+    }
+
+    .app__health_record_title {
+        margin-left: 20px;
+        margin-top: 20px;
+        font-size: 35px;
+        font-weight: 900;
+    }
+
+    .app__health_record_input-wrapper {
+        width: 90%;
+
+        .app__health_record_text {
+            color: var(--color-black);
+            font-weight: 600;
+            font-size: 18;
+            margin-bottom: 15px;
+        }
+    }
+
+    .app__health_record_input_row_spaced {
+
+        .app__form-input-container {
+            width: 45%;
+        }
+    }
+
+    .app__health_record_text_area-wrapper{
+        margin-bottom: 20px;
+    }
+}

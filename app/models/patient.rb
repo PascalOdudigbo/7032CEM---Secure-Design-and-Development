@@ -8,4 +8,10 @@ class Patient < ApplicationRecord
     validates :password, presence: true, length: { in: 8..16 }, on: :create
     # ensuring all doctor emails are unique
     validates :email, presence: true, uniqueness: true, on: :create
+
+    has_many :appointments
+    has_many :doctors, through: :appointments
+    has_many :health_records
+    
+
 end

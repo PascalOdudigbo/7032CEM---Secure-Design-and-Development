@@ -5,17 +5,8 @@
         padding: 15px;
         text-align: left;
         font-size: 0.9em;
-        border-bottom: 2px solid var(--color-syk-blue);
+        border-bottom: 2px solid var(--color-turquoise);
 
-        .app__doctor_manage_availability_data_cell_link{
-            color: var(--color-blue);
-
-
-            &:hover{
-                color: var(--color-syk-blue);
-                text-decoration: underline;
-            }
-        }
 
         .app__doctor_manage_availability_dropdown_item_delete_btn{
             margin-left: auto;

@@ -10,7 +10,10 @@ function PatientAppointment({ appointment, handleCancelAppointment }) {
             <td className="app__patient_appointment_data_cell">{appointment?.doctor?.specialty}</td>
             <td className="app__patient_appointment_data_cell">{appointment?.status}</td>
             <td className="app__patient_appointment_data_cell">
-                <button className="custom__button app__patient_appointment_dropdown_item_delete_btn" onClick={() => { handleCancelAppointment(appointment) }}>Cancel</button>
+                {
+                    appointment?.status !== "Rejected" &&
+                    <button className="custom__button app__patient_appointment_dropdown_item_delete_btn" onClick={() => { handleCancelAppointment(appointment) }}>Cancel</button>
+                }
             </td>
         </tr>
     )

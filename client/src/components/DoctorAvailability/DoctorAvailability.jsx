@@ -8,7 +8,10 @@ function DoctorAvailability({ availability, handleDeleteAvailability }) {
             <td className="app__doctor_manage_availability_data_cell">{availability?.start_time}</td>
             <td className="app__doctor_manage_availability_data_cell">{availability?.end_time}</td>
             <td className="app__doctor_manage_availability_data_cell">
-                <button className="custom__button app__doctor_manage_availability_dropdown_item_delete_btn" onClick={() => { handleDeleteAvailability(availability) }}>Delete</button>
+                {
+                    availability?.status === null &&
+                    <button className="custom__button app__doctor_manage_availability_dropdown_item_delete_btn" onClick={() => { handleDeleteAvailability(availability) }}>Delete</button>
+                }
             </td>
         </tr>
     )

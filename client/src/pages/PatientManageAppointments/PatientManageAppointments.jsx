@@ -138,7 +138,7 @@ function PatientManageAppointments({ patientData, availabilities, setAvailabilit
                     <div className='app__patient_manage_appointments_label_and_dropdown-wrapper'>
                         <p className='p__opensans app__patient_manage_appointments_label'>Doctor Specializations</p>
                         <Dropdown
-                            items={["Select Specialization", "All Specializations", ...specializations]}
+                            items={["All Specializations", ...specializations]}
                             buttonText={specialization}
                             clickFunction={(data) => {
                                 setSpecialization(data)

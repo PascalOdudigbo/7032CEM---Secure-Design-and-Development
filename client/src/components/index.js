@@ -6,3 +6,5 @@ export {default as DoctorAvailability} from "./DoctorAvailability/DoctorAvailabi
 export {default as Availability} from "./Availability/Availability"
 export {default as PatientAppointment} from "./PatientAppointment/PatientAppointment";
 export {default as DoctorAppointment} from "./DoctorAppointment/DoctorAppointment";
+export {default as FormInputReadOnly} from "./FormInputReadOnly/FormInputReadOnly";
+export {default as FormTextArea} from "./FormTextArea/FormTextArea"
