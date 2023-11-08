@@ -10,8 +10,9 @@ class Patient < ApplicationRecord
     validates :email, presence: true, uniqueness: true, on: :create
 
     has_many :appointments
-    has_many :doctors, through: :appointments
+    has_many :doctors, -> { group(:id) }, through: :appointments
     has_many :health_records
+    has_many :patient_consents
     
 
 end

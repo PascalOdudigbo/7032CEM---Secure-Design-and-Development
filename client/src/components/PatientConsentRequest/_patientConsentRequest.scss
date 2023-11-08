@@ -1,7 +1,7 @@
-.app__doctor_appointment_data_row{
+.app__patient_consent_request_data_row{
     font-family: var(--font-alt);
 
-    .app__doctor_appointment_data_cell{
+    .app__patient_consent_request_data_cell{
         padding: 15px;
         text-align: left;
         font-size: 0.9em;
@@ -15,7 +15,7 @@
             align-self: center;
             cursor: pointer;
 
-            .app__doctor_appointment_dropdown_icon{
+            .app__patient_consent_request_dropdown_icon{
                 color: var(--color-golden);
                 box-shadow: 1px 1px 1px 1px var(--color-black);
                 width: 25px;
@@ -38,7 +38,7 @@
               z-index: 1;
               box-shadow: 1px 1px 1px 1px rgb(207, 207, 207);
 
-              .app__doctor_appointment_dropdown_item{
+              .app__patient_consent_request_dropdown_item{
                 font-size: 0.9em;
                 font-weight: 800;
                 width: 100%;
@@ -57,7 +57,7 @@
 
               }
 
-              .app__doctor_appointment_dropdown_item_delete_btn{
+              .app__patient_consent_request_dropdown_item_delete_btn{
                 font-size: 0.9em;
                 font-weight: 800;
                 width: 100%;

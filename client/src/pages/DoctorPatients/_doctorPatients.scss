@@ -1,0 +1,101 @@
+.app__doctor_patients-wrapper {
+    width: 100%;
+    height: calc(100vh - 108.6px); 
+    overflow-y: scroll;
+    overflow-x: hidden;
+    // background-color: red;
+
+
+    .app__doctor_patients_title_and_add_button-wrapper {
+        margin-left: auto;
+        margin-right: auto;
+        width: 96%;
+        margin-bottom: 30px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        // height: 40px;
+
+        .app__doctor_patients_page_title {
+            // color: var(--color-blue);
+            font-size: 35px;
+            font-weight: 900;
+        }
+
+      
+
+        .app__doctor_patients_icon_and_button-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 35px;
+            width: fit-content;
+            border-radius: 17.5px;
+            background-color: var(--color-blue);
+
+            &:hover {
+                background-color: var(--color-syk-blue);
+            }
+
+            .app__add_submission_icon{
+                color: var(--color-orange);
+                margin-left: 2px;
+            }
+
+            .app__add_submission_link {
+                text-decoration: none;
+                color: black;
+                font-size: 0.7em;
+                font-weight: 800;
+                margin-right: 10px;
+                color: white;
+            }
+        }
+
+    }
+
+    .app__doctor_patients_create_health_record-wrapper{
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .app__doctor_patients_table {
+        margin-left: auto;
+        margin-right: auto;
+        width: 96%;
+
+        .app__doctor_patients_table_headers-wrapper {
+            border-radius: 5px;
+
+            .app__doctor_patients_table_header {
+                height: 10px;
+                padding: 10px;
+                background-color: var(--color-turquoise);
+                font-size: 0.9em;
+                font-weight: 600;
+                color: var(--color-orange);
+            }
+
+            
+
+        }
+
+    }
+
+    .app__doctor_patients_table_body_no_submissions{
+        color: var(--color-black);
+        width: 100%;
+        text-align: center;
+        font-size: 1.6em;
+        margin-top: 5px;
+    }
+}
+
+.app__doctor_patients-wrapper::-webkit-scrollbar {
+    display: none;
+}

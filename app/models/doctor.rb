@@ -12,7 +12,8 @@ class Doctor < ApplicationRecord
 
     has_many :availabilities
     has_many :appointments, :through => :availabilities
-    has_many :patients, through: :appointments
+    has_many :patients, -> { group(:id) }, through: :appointments
     has_many :health_records
+    has_many :patient_consents
 
 end

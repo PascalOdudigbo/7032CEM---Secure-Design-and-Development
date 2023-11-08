@@ -41,4 +41,11 @@ class DoctorServices
         specialties
     end
 
+    #function to get doctors patients
+    def doctor_patients(params)
+        doctor = Doctor.find(params[:doctor_id])
+        patients = doctor.patients
+        patients
+    end
+
 end

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { IconContext } from 'react-icons/lib';
 import { SlOptions } from 'react-icons/sl';
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 

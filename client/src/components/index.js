@@ -7,4 +7,7 @@ export {default as Availability} from "./Availability/Availability"
 export {default as PatientAppointment} from "./PatientAppointment/PatientAppointment";
 export {default as DoctorAppointment} from "./DoctorAppointment/DoctorAppointment";
 export {default as FormInputReadOnly} from "./FormInputReadOnly/FormInputReadOnly";
-export {default as FormTextArea} from "./FormTextArea/FormTextArea"
+export {default as FormTextArea} from "./FormTextArea/FormTextArea";
+export {default as DoctorPatient} from "./DoctorPatient/DoctorPatient";
+export {default as PatientConsentRequest} from "./PatientConsentRequest/PatientConsentRequest";
+export {default as Search} from "./Search/Search";

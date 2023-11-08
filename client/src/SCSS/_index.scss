@@ -21,6 +21,10 @@
 @import "../components/FormInputReadOnly/formInputReadOnly.scss";
 @import "../components/FormTextArea/formTextArea";
 @import "../components/DoctorCreateHealthRecord/doctorCreateHealthRecord";
+@import "../pages/DoctorPatients/doctorPatients";
+@import "../pages/PatientConsentRequests/patientConsentRequests";
+@import "../components/PatientConsentRequest/patientConsentRequest";
+@import "../components/Search/search";
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 

@@ -5,11 +5,13 @@ import axios from "axios";
 import { FaUserCircle } from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
 import PatientManageAppointments from '../PatientManageAppointments/PatientManageAppointments';
+import PatientConsentRequests from '../PatientConsentRequests/PatientConsentRequests';
 
 function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, isAuthenticated, setIsAuthenticated, patientData, setPatientData, getData, sendEmail, handleLogout }) {
     const [specializations, setSpecializations] = useState([])
     const [availabilities, setAvailabilities] = useState([])
     const [appointments, setAppointments] = useState([])
+    const [consentRequests, setConsentRequests] = useState([])
 
     useEffect(() => {
         //confirming doctor is logged in and multi-authed on every refresh
@@ -18,6 +20,7 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
         specializations.length === 0 && getData("/doctors-specialties", setSpecializations);
         availabilities.length === 0 && getData("/availabilities", setAvailabilities);
         appointments.length === 0 && getData(`/patient-appointments/${patientData?.id}`, setAppointments)
+        consentRequests.length === 0 && getData(`/a_patient_consents/${patientData?.id}`, setConsentRequests)
     }, [patientData])
 
     //creating the customer dashboard sub component
@@ -87,8 +90,8 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
                                 <p className='p__opensans'><a href='/'>Home</a></p>
                                 <p className='p__opensans'><a href='/patient-portal'>Dashboard</a></p>
                                 <p className='p__opensans'><a href='/patient-portal/appointments'>Appointments</a></p>
-                                <p className='p__opensans'><a href='#contactus'>Records</a></p>
-                                <p className='p__opensans'><a href='/faqs'>Modification Requests</a></p>
+                                <p className='p__opensans'><a href='/patient-portal/consent-requests'>Health Records</a></p>
+                                <p className='p__opensans'><a href='/patient-portal/consent-requests'>Records Access Requests</a></p>
                                 <p className='p__opensans' onClick={() => { handleLogout() }}>Logout</p>
                             </div>
 
@@ -115,11 +118,22 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
                                 sendEmail={sendEmail}
                             />
                         } />
+
+                        <Route path="/consent-requests" element={
+                            <PatientConsentRequests
+                                consentRequests={consentRequests}
+                                setConsentRequests={setConsentRequests}
+                                getData={getData}
+                                patientData={patientData}
+                                sendEmail={sendEmail}
+                                hideAlert={hideAlert}
+                                setAlertDisplay={setAlertDisplay}
+                                setRequestStatus={setRequestStatus}
+                                setAlertMessage={setAlertMessage}
+                            />
+                        } />
                     </Routes>
                 </div>
-
-
-
 
             </div> : <h1 className='flex__column_center '> </h1>
     )

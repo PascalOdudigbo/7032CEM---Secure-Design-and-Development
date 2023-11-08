@@ -6,12 +6,15 @@ import { FaUserCircle } from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
 import DoctorManageAvailabilities from '../DoctorManageAvailabilities/DoctorManageAvailabilities';
 import DoctorManageAppointments from '../DoctorManageAppointments/DoctorManageAppointments';
+import DoctorPatients from '../DoctorPatients/DoctorPatients';
 
 function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, isAuthenticated, doctorData, getData, handleLogout, setDoctorData, setIsAuthenticated, sendEmail }) {
   // creating data manaement state variables 
   const [availabilities, setAvailabilities] = useState([])
   const [appointments, setAppointments] = useState([])
   const [targetAppointment, setTargetAppointment] = useState({})
+  const [patients, setPatients] = useState([])
+  const [targetPatient, setTargetPatient] = useState({})
 
   useEffect(() => {
     //confirming doctor is logged in and multi-authed on every refresh
@@ -19,7 +22,9 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
     isAuthenticated?.authenticated === undefined && getData("/doctor-multi-authed", setIsAuthenticated)
     availabilities.length === 0 && getData(`/doctor-availabilities/${doctorData?.id}`, setAvailabilities)
     appointments.length === 0 && getData(`/doctor-appointments/${doctorData?.id}`, setAppointments)
-  }, [])
+    patients.length === 0 && getData(`/doctor-patients/${doctorData?.id}`, setPatients)
+
+  }, [doctorData])
 
   //creating the customer dashboard sub component
   function Dashboard() {
@@ -76,7 +81,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
                 <p className='p__opensans'><a href='/doctor-portal'>Dashboard</a></p>
                 <p className='p__opensans'><a href='/doctor-portal/manage-availabilities'>Manage Availabilities</a></p>
                 <p className='p__opensans'><a href='/doctor-portal/manage-appointments'>Manage Appointments</a></p>
-                <p className='p__opensans'><a href='doctor-portal/patients'>Patients</a></p>
+                <p className='p__opensans'><a href='/doctor-portal/patients'>Patients</a></p>
                 <p className='p__opensans' onClick={() => { handleLogout() }}>Logout</p>
               </div>
 
@@ -114,8 +119,27 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
                 targetAppointment={targetAppointment}
                 setTargetAppointment={setTargetAppointment}
               />
+
+            } />
+
+
+            <Route path="/patients/*" element={
+              <DoctorPatients
+                patients={patients}
+                setPatients={setPatients}
+                doctorData={doctorData}
+                hideAlert={hideAlert}
+                setAlertDisplay={setAlertDisplay}
+                setRequestStatus={setRequestStatus}
+                setAlertMessage={setAlertMessage}
+                getData={getData}
+                sendEmail={sendEmail}
+                setTargetPatient={setTargetPatient}
+              />
+
             } />
           </Routes>
+
         </div>
 
 
