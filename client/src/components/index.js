@@ -13,3 +13,4 @@ export {default as PatientConsentRequest} from "./PatientConsentRequest/PatientC
 export {default as Search} from "./Search/Search";
 export {default as DoctorViewPatientRecord} from "./DoctorViewPatientRecord/DoctorViewPatientRecord";
 export {default as DoctorEditHealthRecord} from "./DoctorEditHealthRecord/DoctorEditHealthRecord";
+export {default as PatientViewHealthRecord} from "./PatientViewHealthRecord/PatientViewHealthRecord";

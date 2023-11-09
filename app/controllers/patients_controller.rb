@@ -58,7 +58,7 @@ class PatientsController < ApplicationController
 
   # GET /patient-loggedin
   def patient_loggedin
-    render json:  @@patient_services.check_patient_logged_in(session)
+    render json:  @@patient_services.check_patient_logged_in(session), include: ["appointments", "doctors", ["health_records", "health_records.doctor", ["health_records.appointment", "health_records.appointment.availability"]], "patient_consents"]
   end
 
   # GET /patient-multi-authed

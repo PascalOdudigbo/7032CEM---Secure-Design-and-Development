@@ -6,6 +6,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
 import PatientManageAppointments from '../PatientManageAppointments/PatientManageAppointments';
 import PatientConsentRequests from '../PatientConsentRequests/PatientConsentRequests';
+import PatientViewHealthRecords from '../PatientViewHealthRecords/PatientViewHealthRecords';
 
 function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, isAuthenticated, setIsAuthenticated, patientData, setPatientData, getData, sendEmail, handleLogout }) {
     const [specializations, setSpecializations] = useState([])
@@ -40,17 +41,17 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
 
                     <div className="app__patient_portal_dashboard-statistic">
                         <h3 className="p__opensans app__patient_portal_dashboard-statistic-title">MEDICAL RECORDS</h3>
-                        <p className="app__patient_portal_dashboard-statistic-value">{0}</p>
+                        <p className="app__patient_portal_dashboard-statistic-value">{patientData?.health_records?.length}</p>
                     </div>
 
                     <div className="app__patient_portal_dashboard-statistic">
                         <h3 className="p__opensans app__patient_portal_dashboard-statistic-title">MODIFICATION REQUESTS</h3>
-                        <p className="app__patient_portal_dashboard-statistic-value">{0}</p>
+                        <p className="app__patient_portal_dashboard-statistic-value">{consentRequests?.length}</p>
                     </div>
 
                     <div className="app__patient_portal_dashboard-statistic">
                         <h3 className="p__opensans app__patient_portal_dashboard-statistic-title">MY DOCTORS</h3>
-                        <p className="app__patient_portal_dashboard-statistic-value">{0}</p>
+                        <p className="app__patient_portal_dashboard-statistic-value">{patientData?.doctors?.length}</p>
                     </div>
 
                 </div>
@@ -90,7 +91,7 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
                                 <p className='p__opensans'><a href='/'>Home</a></p>
                                 <p className='p__opensans'><a href='/patient-portal'>Dashboard</a></p>
                                 <p className='p__opensans'><a href='/patient-portal/appointments'>Appointments</a></p>
-                                <p className='p__opensans'><a href='/patient-portal/consent-requests'>Health Records</a></p>
+                                <p className='p__opensans'><a href='/patient-portal/health-records'>Health Records</a></p>
                                 <p className='p__opensans'><a href='/patient-portal/consent-requests'>Records Access Requests</a></p>
                                 <p className='p__opensans' onClick={() => { handleLogout() }}>Logout</p>
                             </div>
@@ -130,6 +131,12 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
                                 setAlertDisplay={setAlertDisplay}
                                 setRequestStatus={setRequestStatus}
                                 setAlertMessage={setAlertMessage}
+                            />
+                        } />
+
+                        <Route path="/health-records" element={
+                            <PatientViewHealthRecords
+                                patientData={patientData}
                             />
                         } />
                     </Routes>

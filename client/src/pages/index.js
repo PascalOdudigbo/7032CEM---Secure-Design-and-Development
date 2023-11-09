@@ -11,3 +11,4 @@ export {default as DoctorManageAppointments} from "./DoctorManageAppointments/Do
 export {default as DoctorPatients} from "./DoctorPatients/DoctorPatients";
 export {default as PatientConsentRequests} from "./PatientConsentRequests/PatientConsentRequests";
 export {default as DoctorViewPatientRecords} from "./DoctorViewPatientRecords/DoctorViewPatientRecords";
+export {default as PatientViewHealthRecords} from "./PatientViewHealthRecords/PatientViewHealthRecords";

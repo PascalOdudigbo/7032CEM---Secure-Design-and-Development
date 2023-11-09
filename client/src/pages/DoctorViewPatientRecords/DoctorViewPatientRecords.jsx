@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { DoctorViewPatientRecord, DoctorEditHealthRecord } from '../../components'
-import axios from 'axios'
 import { Route, Routes } from 'react-router-dom'
 
 function DoctorViewPatientRecords({ doctorData, targetPatient, setTargetPatient, targetHealthRecord, setTargetHealthRecord, hideAlert, setAlertDisplay, setRequestStatus, setAlertMessage, getData, sendEmail, setPatients }) {
