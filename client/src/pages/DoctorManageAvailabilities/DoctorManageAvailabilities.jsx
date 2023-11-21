@@ -102,7 +102,7 @@ function DoctorManageAvailabilities({ doctorData, hideAlert, setAlertDisplay, se
 
 
 
-  }, [availableFrom])
+  }, [availableFrom, availabilities, doctorData, getData, setAvailabilities])
 
 
 

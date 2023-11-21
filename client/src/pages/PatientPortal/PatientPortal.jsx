@@ -103,6 +103,7 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
 
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
+                        
                         <Route path="/appointments" element={
                             <PatientManageAppointments
                                 patientData={patientData}

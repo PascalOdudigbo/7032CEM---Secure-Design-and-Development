@@ -29,7 +29,4 @@ Rails.application.routes.draw do
   get '/doctor-appointments/:doctor_id', to: 'appointments#get_doctor_appointments'
   get '/doctor-patients/:doctor_id', to: 'doctors#get_doctor_patients'
 
-
-
-
 end

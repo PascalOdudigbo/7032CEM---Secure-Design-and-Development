@@ -7,7 +7,7 @@ class Patient < ApplicationRecord
     # ensuring password is between 8 to 16 characters long
     validates :password, presence: true, length: { in: 8..16 }, on: :create
     # ensuring all doctor emails are unique
-    validates :email, presence: true, uniqueness: true, on: :create
+    validates :email, presence: true, uniqueness: true, on: :create, format: { with: URI::MailTo::EMAIL_REGEXP }
 
     has_many :appointments
     has_many :doctors, -> { group(:id) }, through: :appointments

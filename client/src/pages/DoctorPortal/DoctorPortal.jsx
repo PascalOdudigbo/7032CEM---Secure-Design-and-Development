@@ -94,6 +94,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
 
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            
             <Route path="/manage-availabilities" element={
               <DoctorManageAvailabilities
                 doctorData={doctorData}

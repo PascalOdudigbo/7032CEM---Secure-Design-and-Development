@@ -66,7 +66,7 @@ function DoctorCreateHealthRecord({ doctorData, setAppointments, targetAppointme
         const pathArr = window.location.href.split("/")
         targetAppointment?.id === undefined && getData(`/appointments/${pathArr[pathArr.length -1]}`, setTargetAppointment)
 
-    }, [targetAppointment, getData])
+    }, [targetAppointment, getData, setTargetAppointment])
 
     return (
         <div className='app__health_record-wrapper'>
