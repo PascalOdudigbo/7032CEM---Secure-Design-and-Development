@@ -11,6 +11,7 @@ import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
 
 
 function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
+    // creating a navigation variable function
     const navigate = useNavigate();
 
     return (
@@ -47,8 +48,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
                 {
                     window.location.href.includes("portal") || window.location.href.includes("confirm-email") ? null :
                         <ul className='app__navbar-links'>
-                            <li className='p__opensans'><a href='/'>Home</a></li>
-                            {/* <li className='p__opensans'><a href='#aboutUs'>About us</a></li> */}
+                            <li className='p__opensans'><p  onClick={() => navigate("/")}>Home</p></li>
                         </ul>
                 }
 
@@ -66,7 +66,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
                                 <IconContext.Provider value={{ size: "32px", className: "app__navbar-login-icon" }}>
                                     <BiSolidDashboard />
                                 </IconContext.Provider>
-                                <a href={userData?.verification_status ? '/patient-portal' : '/doctor-portal'} className='p__opensans'>Dashboard</a>
+                                <p  onClick={() => userData?.verification_status ? navigate('/patient-portal') : navigate('/doctor-portal')} className='p__opensans'>Dashboard</p>
                             </div>
                             :
                         window.location.href.includes("sign-in") === false && window.location.href.includes("confirm-email") === false &&
@@ -75,7 +75,7 @@ function Navbar({ userData, menuDisplay, setMenuDusplay, isAuthenticated}) {
                                 <IconContext.Provider value={{ size: "25px", className: "app__navbar-login-icon" }}>
                                     <AiFillLock />
                                 </IconContext.Provider>
-                                <a href='/patient-sign-in' className='p__opensans'>Sign In</a>
+                                <p  onClick={() => navigate("/patient-sign-in")} className='p__opensans'>Sign In</p>
                             </div>
                 }
             </div>

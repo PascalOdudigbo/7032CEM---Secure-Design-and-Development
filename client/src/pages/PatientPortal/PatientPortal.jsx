@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { Navbar } from '../../components';
-import { Route, Routes } from 'react-router-dom'
-import axios from "axios";
+import { Route, Routes, useNavigate } from 'react-router-dom'
+// import axios from "axios";
 import { FaUserCircle } from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
 import PatientManageAppointments from '../PatientManageAppointments/PatientManageAppointments';
@@ -13,6 +13,9 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
     const [availabilities, setAvailabilities] = useState([])
     const [appointments, setAppointments] = useState([])
     const [consentRequests, setConsentRequests] = useState([])
+
+    // creating a navigation variable function
+    const navigate = useNavigate();
 
     useEffect(() => {
         //confirming doctor is logged in and multi-authed on every refresh
@@ -88,11 +91,11 @@ function PatientPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay
 
                         <div className='app_portal_menu_items-wrapper'>
                             <div className='app__navbar-smallscreen_links'>
-                                <p className='p__opensans'><a href='/'>Home</a></p>
-                                <p className='p__opensans'><a href='/patient-portal'>Dashboard</a></p>
-                                <p className='p__opensans'><a href='/patient-portal/appointments'>Appointments</a></p>
-                                <p className='p__opensans'><a href='/patient-portal/health-records'>Health Records</a></p>
-                                <p className='p__opensans'><a href='/patient-portal/consent-requests'>Records Access Requests</a></p>
+                                <p className='p__opensans'><p onClick={() => navigate("/")}>Home</p></p>
+                                <p className='p__opensans'><p  onClick={() => navigate("/patient-portal")}>Dashboard</p></p>
+                                <p className='p__opensans'><p  onClick={() => navigate("/patient-portal/appointments")}>Appointments</p></p>
+                                <p className='p__opensans'><p  onClick={() => navigate("/patient-portal/health-records")}>Health Records</p></p>
+                                <p className='p__opensans'><p  onClick={() => navigate("/patient-portal/consent-requests")}>Records Access Requests</p></p>
                                 <p className='p__opensans' onClick={() => { handleLogout() }}>Logout</p>
                             </div>
 

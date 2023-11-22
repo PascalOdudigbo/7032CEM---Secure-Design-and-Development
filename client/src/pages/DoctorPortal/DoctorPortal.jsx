@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navbar } from '../../components';
-import { Route, Routes } from 'react-router-dom'
-import axios from "axios";
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { FaUserCircle } from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
 import DoctorManageAvailabilities from '../DoctorManageAvailabilities/DoctorManageAvailabilities';
@@ -18,6 +17,9 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
   const [targetPatient, setTargetPatient] = useState({})
   const [targetHealthRecord, setTargetHealthRecord] = useState({})
 
+   // creating a navigation variable function
+   const navigate = useNavigate();
+
   useEffect(() => {
     //confirming doctor is logged in and multi-authed on every refresh
     doctorData?.id === undefined && getData("/doctor-loggedin", setDoctorData)
@@ -26,7 +28,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
     appointments.length === 0 && getData(`/doctor-appointments/${doctorData?.id}`, setAppointments)
     patients.length === 0 && getData(`/doctor-patients/${doctorData?.id}`, setPatients)
 
-  }, [doctorData])
+  }, [doctorData, isAuthenticated])
 
   //creating the customer dashboard sub component
   function Dashboard() {
@@ -79,11 +81,11 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
 
             <div className='app_portal_menu_items-wrapper'>
               <div className='app__navbar-smallscreen_links'>
-                <p className='p__opensans'><a href='/'>Home</a></p>
-                <p className='p__opensans'><a href='/doctor-portal'>Dashboard</a></p>
-                <p className='p__opensans'><a href='/doctor-portal/manage-availabilities'>Manage Availabilities</a></p>
-                <p className='p__opensans'><a href='/doctor-portal/manage-appointments'>Manage Appointments</a></p>
-                <p className='p__opensans'><a href='/doctor-portal/patients'>Patients</a></p>
+                <p className='p__opensans'><p  onClick={() => navigate("/")}>Home</p></p>
+                <p className='p__opensans'><p  onClick={() => navigate("/doctor-portal")}>Dashboard</p></p>
+                <p className='p__opensans'><p  onClick={() => navigate("/doctor-portal/manage-availabilities")}>Manage Availabilities</p></p>
+                <p className='p__opensans'><p  onClick={() => navigate("/doctor-portal/manage-appointments")}>Manage Appointments</p></p>
+                <p className='p__opensans'><p  onClick={() => navigate("/doctor-portal/patients")}>Patients</p></p>
                 <p className='p__opensans' onClick={() => { handleLogout() }}>Logout</p>
               </div>
 
