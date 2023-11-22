@@ -84,3 +84,4 @@ production:
   database: HAB_health_booking_system_production
   username: HAB_health_booking_system
   password: <%= ENV["HAB_HEALTH_BOOKING_SYSTEM_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

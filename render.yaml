@@ -1,0 +1,18 @@
+databases:
+  - name: HAB_health_booking_system
+    databaseName: HAB_health_booking_system
+    user: HAB_health_booking_system
+
+services:
+  - type: web
+    name: HAB_health_booking_system
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: HAB_health_booking_system
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

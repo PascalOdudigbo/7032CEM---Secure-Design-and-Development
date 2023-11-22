@@ -8,13 +8,13 @@
 
 puts "Started Seeding 🌱🌱🌱"
 
-# if Doctor.all.length < 1
+if Doctor.all.length < 1
     Doctor.create(first_name: "Mutharia", last_name: "Ian", email: "odudigbopascal@gmail.com", password: "1234567890" , password_confirmation: "1234567890", specialty: "Paediatrics")
-    # Doctor.create(first_name: "Samuel", last_name: "Baraka", email: "odudigbopascal@gmail.com", password: "1234" , password_confirmation: "1234", specialty: "Psychiatry")
-    # Doctor.create(first_name: "Evans", last_name: "Mwangi", email: "odudigbopascal@gmail.com", password: "1234" , password_confirmation: "1234", specialty: "Surgery")
+    Doctor.create(first_name: "Samuel", last_name: "Baraka", email: "pascalodudigbo@gmail.com", password: "1234567890" , password_confirmation: "1234567890", specialty: "Psychiatry")
+    Doctor.create(first_name: "Evans", last_name: "Mwangi", email: "allmyprojectsemail@gmail.com", password: "1234567890" , password_confirmation: "1234567890", specialty: "Surgery")
     # Doctor.create(first_name: "Ashley", last_name: "Simiyu", email: "odudigbopascal@gmail.com", password: "1234" , password_confirmation: "1234", specialty: "Sexual & Reproductive Health")
     # Doctor.create(first_name: "Ruweydha", last_name: "Abdinoor", email: "odudigbopascal@gmail.com", password: "1234" , password_confirmation: "1234", specialty: "General Practice")
     # Doctor.create(first_name: "Elias", last_name: "Baya", email: "odudigbopascal@gmail.com", password: "1234" , password_confirmation: "1234", specialty: "Gynaecology")
-# end
+end
 
 puts "Done Seeding 🌳🌳🌳"
