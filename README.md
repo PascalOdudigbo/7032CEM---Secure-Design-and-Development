@@ -1,24 +1,44 @@
-# README
+###  Application
+HAB Health appointment management system
+# Automated Donation Platform 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Author
+Paschal Odudigbo
 
-* Ruby version
 
-* System dependencies
+### Description
+This project involves developing a comprehensive healthcare appointment booking system for HAB, a healthcare startup, using a technology stack that combines ReactJS for the front-end and a Rails API for the back-end. The application aims to streamline online appointment scheduling, providing a secure and user-friendly experience for patients and healthcare providers.
 
-* Configuration
+## live link
+[HAB Live Link](https://hab-health-booking-system.onrender.com/)
 
-* Database creation
 
-* Database initialization
+## Default Doctor logins for testing
+{
+  "email": "odudigbopascal@gmail.com",
+  "password": "1234567890",
+  "Specialization": "Paediatrics"
+}
 
-* How to run the test suite
+{
+  "email": "odudigbopascal@gmail.com",
+  "password": "1234567890",
+  "Specialization": "Psychiatry"
+}
 
-* Services (job queues, cache servers, search engines, etc.)
+{
+  "email": "odudigbopascal@gmail.com",
+  "password": "1234567890",
+  "Specialization": "Surgery"
+}
 
-* Deployment instructions
-
-* ...
+## Technologies Used
+ReactJs(Frontend)
+PostgreSQL
+Ruby on Rails(Backend)
+SCSS
+EmailJS
+Cloudinary
+rSpec
+Github

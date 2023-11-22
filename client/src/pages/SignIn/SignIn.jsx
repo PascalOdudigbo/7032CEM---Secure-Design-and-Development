@@ -133,7 +133,7 @@ function SignIn({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setRe
                         />
 
 
-                        <p className='p__opensans app__signin_form-signIn-text-link' onClick={() => navigate("/forgot-password")}>forgot password?</p>
+                        <p className='p__opensans app__signin_form-signIn-text-link' onClick={() => isDoctor ? navigate("/patient-sign-in") : navigate("/doctor-sign-in")}>{isPatient? "You're a doctor?" : "You're a patient?"}</p>
 
                         <button className='custom__button app__signin_form-button'>Submit</button>
                         {

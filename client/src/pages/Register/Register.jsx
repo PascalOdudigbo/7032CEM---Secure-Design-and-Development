@@ -14,7 +14,7 @@ function Register({ userData, menuDisplay, setMenuDisplay, hideAlert, setAlertDi
     const navigate = useNavigate("")
 
     //deployed URL, local for now
-    const deployedURL = "http://localhost:4000"
+    const deployedURL = "https://hab-health-booking-system.onrender.com"
 
 
     function handleSubmit(e) {
