@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe DoctorsController, type: :controller do
 
     describe 'Authentication Tests' do
@@ -43,7 +42,5 @@ RSpec.describe DoctorsController, type: :controller do
             delete :doctor_logout
             expect(response).to have_http_status(:no_content)
         end
-
     end
-
 end
