@@ -15,6 +15,8 @@ This project involves developing a comprehensive healthcare appointment booking 
 
 
 ## Default Doctor logins for testing
+
+```
 {
   "email": "odudigbopascal@gmail.com",
   "password": "1234567890",
@@ -33,12 +35,14 @@ This project involves developing a comprehensive healthcare appointment booking 
   "Specialization": "Surgery"
 }
 
+```
+
 ## Technologies Used
-ReactJs(Frontend)
-PostgreSQL
-Ruby on Rails(Backend)
-SCSS
-EmailJS
-Cloudinary
-rSpec
-Github
+- ReactJs(Frontend)
+- PostgreSQL
+- Ruby on Rails(Backend)
+- SCSS
+- EmailJS
+- Cloudinary
+- rSpec
+- Github
