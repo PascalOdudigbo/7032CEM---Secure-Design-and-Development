@@ -56,7 +56,7 @@ function DoctorPortal({ menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay,
   }
 
   return (
-    //restricting access to portal if not logged in
+    //restricting access to portal through navigation if not logged in and authenticated 
     doctorData?.id && isAuthenticated?.authenticated ?
       <div className='app__doctor_portal'>
 

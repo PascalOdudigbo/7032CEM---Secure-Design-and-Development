@@ -65,9 +65,11 @@ function UserAuth({menuDisplay, setMenuDisplay, hideAlert, setAlertDisplay, setR
         }
 
     }
-
+    
+    // a function to generate random auth code and send it as email
     function handleSendCodeAgain() {
         const authCode = getRandomPin(1000, 9999);
+        // encrypting the auth code
         setEncryptedCode(CryptoJS.AES.encrypt(authCode.toString(), encryptionKey))
 
         const emailValues = {
